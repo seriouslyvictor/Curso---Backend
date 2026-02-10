@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!--
+============================================================
+LIÇÃO 3.6 - PROJETO FINAL: PORTFÓLIO PESSOAL
+============================================================
+Objetivo: Criar um portfólio completo e publicar online
+Duração: 2 horas
+Resultado: Site pessoal pronto para mostrar ao mundo!
+
+Este projeto integra TUDO do Módulo 3:
+- HTML semântico (Lição 3.2)
+- CSS moderno (Lição 3.3)
+- Design responsivo (Lição 3.4)
+- Formulário de contato (Lição 3.5)
+============================================================
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO básico -->
+    <meta name="description" content="Portfólio de Maria Silva - Desenvolvedora Web">
+    <meta name="keywords" content="desenvolvedor, web, python, portfólio">
+
+    <title>Maria Silva | Desenvolvedora Web</title>
+
+    <!-- Fonte do Google (opcional) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS externo (recomendado) ou interno -->
+    <link rel="stylesheet" href="6_projeto_portfolio.css">
+</head>
+
+<body>
+
+    <!-- ===== NAVEGAÇÃO ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#inicio" class="nav-logo">
+                <span class="logo-icon">👩‍💻</span>
+                <span class="logo-text">Maria Silva</span>
+            </a>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#inicio" class="nav-link">Início</a></li>
+                <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
+                <li><a href="#projetos" class="nav-link">Projetos</a></li>
+                <li><a href="#contato" class="nav-link">Contato</a></li>
+            </ul>
+
+            <!-- Menu hamburguer para mobile -->
+            <button class="nav-toggle" id="nav-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+
+    <!-- ===== HERO / INÍCIO ===== -->
+    <header class="hero" id="inicio">
+        <div class="hero-content">
+            <p class="hero-greeting">Olá, eu sou</p>
+            <h1 class="hero-title">Maria Silva</h1>
+            <p class="hero-subtitle">Desenvolvedora Web em formação</p>
+            <p class="hero-description">
+                Apaixonada por tecnologia e código. Transformando ideias em sites incríveis.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#projetos" class="btn btn-primary">Ver Projetos</a>
+                <a href="#contato" class="btn btn-secondary">Fale Comigo</a>
+            </div>
+
+            <div class="hero-social">
+                <a href="https://github.com" target="_blank" title="GitHub">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                </a>
+                <a href="https://linkedin.com" target="_blank" title="LinkedIn">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn">
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="https://via.placeholder.com/400x400/667eea/ffffff?text=Sua+Foto"
+                 alt="Foto de Maria Silva"
+                 class="profile-photo">
+        </div>
+    </header>
+
+
+    <!-- ===== SOBRE ===== -->
+    <section class="section" id="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre Mim</h2>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Olá! Sou <strong>Maria Silva</strong>, tenho 17 anos e estou
+                        aprendendo desenvolvimento web. Moro em São Paulo e estudo
+                        no Ensino Médio.
+                    </p>
+                    <p>
+                        Descobri a programação há alguns meses e me apaixonei!
+                        Adoro resolver problemas e ver ideias se transformando em
+                        código que funciona.
+                    </p>
+                    <p>
+                        Quando não estou programando, gosto de jogar videogame,
+                        assistir séries e passar tempo com minha família.
+                    </p>
+
+                    <div class="about-info">
+                        <div class="info-item">
+                            <span class="info-label">📍 Localização:</span>
+                            <span class="info-value">São Paulo, SP</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">🎓 Formação:</span>
+                            <span class="info-value">3º ano do Ensino Médio</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">🎯 Objetivo:</span>
+                            <span class="info-value">Desenvolvedor Full-Stack</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/350x400/764ba2/ffffff?text=Foto+Secundaria"
+                         alt="Maria programando">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===== HABILIDADES ===== -->
+    <section class="section section-alt" id="habilidades">
+        <div class="container">
+            <h2 class="section-title">Habilidades</h2>
+
+            <div class="skills-container">
+
+                <div class="skill-category">
+                    <h3>🌐 Frontend</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>⚙️ Backend</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                            <span>Python</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask">
+                            <span>Flask</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite">
+                            <span>SQLite</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🛠️ Ferramentas</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+                            <span>VS Code</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                            <span>GitHub</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===== PROJETOS ===== -->
+    <section class="section" id="projetos">
+        <div class="container">
+            <h2 class="section-title">Meus Projetos</h2>
+
+            <div class="projects-grid">
+
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x250/e74c3c/ffffff?text=Quiz+Game"
+                             alt="Projeto Quiz">
+                    </div>
+                    <div class="project-content">
+                        <h3>Quiz Interativo</h3>
+                        <p>Um jogo de perguntas e respostas feito em Python com sistema de pontuação.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Terminal</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">Ver Código</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x250/3498db/ffffff?text=Agenda+Contatos"
+                             alt="Projeto Agenda">
+                    </div>
+                    <div class="project-content">
+                        <h3>Agenda de Contatos</h3>
+                        <p>Sistema completo para gerenciar contatos com salvamento em arquivo JSON.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>JSON</span>
+                            <span>CRUD</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">Ver Código</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x250/27ae60/ffffff?text=Portfolio"
+                             alt="Projeto Portfólio">
+                    </div>
+                    <div class="project-content">
+                        <h3>Portfólio Pessoal</h3>
+                        <p>Este site! Desenvolvido com HTML, CSS e design responsivo.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>Responsivo</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">Ver Código</a>
+                            <a href="#" class="btn btn-small btn-outline">Demo</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===== CONTATO ===== -->
+    <section class="section section-alt" id="contato">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+
+            <div class="contact-content">
+
+                <div class="contact-info">
+                    <p>Quer conversar sobre um projeto, fazer uma pergunta ou
+                    simplesmente dizer oi? Ficarei feliz em ouvir você!</p>
+
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:maria@email.com">maria@email.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <h4>Localização</h4>
+                            <p>São Paulo, SP - Brasil</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-icon">🌐</span>
+                        <div>
+                            <h4>Redes Sociais</h4>
+                            <div class="social-links">
+                                <a href="#">GitHub</a>
+                                <a href="#">LinkedIn</a>
+                                <a href="#">Instagram</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Mensagem enviada! (simulação)');">
+                    <div class="form-group">
+                        <label for="nome">Nome *</label>
+                        <input type="text" id="nome" name="nome" required
+                               placeholder="Seu nome completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required
+                               placeholder="seu@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="assunto">Assunto *</label>
+                        <select id="assunto" name="assunto" required>
+                            <option value="">Selecione...</option>
+                            <option value="projeto">Proposta de Projeto</option>
+                            <option value="duvida">Dúvida</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem *</label>
+                        <textarea id="mensagem" name="mensagem" required
+                                  placeholder="Escreva sua mensagem..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        📤 Enviar Mensagem
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===== RODAPÉ ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Maria Silva. Todos os direitos reservados.</p>
+                <p>Feito com ❤️ e muito ☕ | Projeto do Curso Python Backend</p>
+            </div>
+
+            <a href="#inicio" class="back-to-top" title="Voltar ao topo">⬆️</a>
+        </div>
+    </footer>
+
+
+    <!-- JavaScript para menu mobile -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            const toggle = document.getElementById('nav-toggle');
+            menu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        // Fecha menu ao clicar em um link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-menu').classList.remove('active');
+                document.getElementById('nav-toggle').classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>

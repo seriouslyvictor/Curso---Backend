@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lição 3.1 - Como a Web Funciona</title>
+    <style>
+        /* Estilos básicos para a página de explicação */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+        }
+
+        .conceito {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .diagrama {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .destaque {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+
+        .exemplo {
+            background: #d4edda;
+            padding: 15px;
+            border-left: 4px solid #28a745;
+            margin: 15px 0;
+        }
+
+        code {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🌐 Lição 3.1 - Como a Web Funciona</h1>
+
+    <p><strong>Duração:</strong> 1 hora</p>
+    <p><strong>Objetivo:</strong> Entender a jornada de uma página web, do clique até aparecer na tela.</p>
+
+    <!-- ===== CONCEITO 1: O QUE É A WEB ===== -->
+    <div class="conceito">
+        <h2>📚 O que é a Web?</h2>
+
+        <p>A <strong>World Wide Web</strong> (WWW) é um sistema de documentos interligados
+        que funcionam sobre a Internet. Quando você "navega na internet", está usando a Web.</p>
+
+        <div class="destaque">
+            <strong>Internet ≠ Web</strong><br>
+            A <em>Internet</em> é a rede de computadores conectados.<br>
+            A <em>Web</em> é um serviço que roda sobre a Internet (como email, streaming, etc).
+        </div>
+    </div>
+
+    <!-- ===== CONCEITO 2: CLIENTE E SERVIDOR ===== -->
+    <div class="conceito">
+        <h2>🖥️ Cliente e Servidor</h2>
+
+        <p>A web funciona com dois tipos de computadores:</p>
+
+        <ul>
+            <li><strong>Cliente:</strong> Seu navegador (Chrome, Firefox, etc). Pede páginas.</li>
+            <li><strong>Servidor:</strong> Computador que guarda os sites. Envia as páginas.</li>
+        </ul>
+
+        <div class="diagrama">
+┌─────────────┐                        ┌─────────────┐
+│   CLIENTE   │   ──── Pedido ────▶   │  SERVIDOR   │
+│ (Navegador) │                        │   (Site)    │
+│             │   ◀── Resposta ────   │             │
+└─────────────┘                        └─────────────┘
+    Você                               Google, Facebook,
+                                       seu futuro site!
+        </div>
+
+        <div class="exemplo">
+            <strong>Exemplo do dia a dia:</strong><br>
+            Cliente = Você no restaurante pedindo comida<br>
+            Servidor = Cozinha que prepara e entrega a comida
+        </div>
+    </div>
+
+    <!-- ===== CONCEITO 3: URL ===== -->
+    <div class="conceito">
+        <h2>🔗 URL - O Endereço da Página</h2>
+
+        <p>URL (Uniform Resource Locator) é o endereço único de cada página na web.</p>
+
+        <div class="diagrama">
+    https://www.exemplo.com.br/pagina/contato.html
+    └─┬──┘ └───────┬───────┘ └────────┬─────────┘
+      │           │                   │
+  Protocolo    Domínio             Caminho
+  (segurança)  (nome do site)     (página específica)
+        </div>
+
+        <ul>
+            <li><code>https://</code> - Protocolo seguro (o cadeado 🔒)</li>
+            <li><code>www.exemplo.com.br</code> - Domínio (nome do site)</li>
+            <li><code>/pagina/contato.html</code> - Caminho para a página</li>
+        </ul>
+    </div>
+
+    <!-- ===== CONCEITO 4: A JORNADA DE UM CLIQUE ===== -->
+    <div class="conceito">
+        <h2>🚀 A Jornada de um Clique</h2>
+
+        <p>O que acontece quando você digita um endereço e aperta Enter:</p>
+
+        <div class="diagrama">
+1. 👆 Você digita: www.google.com
+
+2. 🔍 DNS (lista telefônica da internet)
+   Traduz "google.com" para um número IP (142.250.190.14)
+
+3. 📡 Seu computador envia um PEDIDO (request)
+   "Por favor, me envie a página inicial"
+
+4. 🖥️ O servidor do Google recebe o pedido
+   Prepara a página HTML, CSS, imagens...
+
+5. 📦 O servidor envia a RESPOSTA (response)
+   Arquivos HTML, CSS, JavaScript, imagens
+
+6. 🎨 Seu navegador RENDERIZA (desenha) a página
+   Transforma o código em algo visual
+
+7. 👀 Você vê a página na tela!
+        </div>
+
+        <p><strong>Tudo isso acontece em menos de 1 segundo!</strong></p>
+    </div>
+
+    <!-- ===== CONCEITO 5: HTML, CSS, JS ===== -->
+    <div class="conceito">
+        <h2>🏗️ Os Três Pilares da Web</h2>
+
+        <p>Toda página web é feita de três tecnologias:</p>
+
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr style="background: #3498db; color: white;">
+                <th style="padding: 10px; text-align: left;">Tecnologia</th>
+                <th style="padding: 10px; text-align: left;">Função</th>
+                <th style="padding: 10px; text-align: left;">Analogia</th>
+            </tr>
+            <tr style="background: white;">
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>HTML</strong></td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">Estrutura e conteúdo</td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">🦴 Esqueleto do corpo</td>
+            </tr>
+            <tr style="background: #f8f9fa;">
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>CSS</strong></td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">Aparência e estilo</td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">👗 Roupas e maquiagem</td>
+            </tr>
+            <tr style="background: white;">
+                <td style="padding: 10px;"><strong>JavaScript</strong></td>
+                <td style="padding: 10px;">Interatividade</td>
+                <td style="padding: 10px;">🧠 Cérebro e movimentos</td>
+            </tr>
+        </table>
+
+        <div class="destaque">
+            <strong>Neste módulo:</strong> Vamos focar em HTML e CSS.<br>
+            JavaScript será usado mais tarde com Flask!
+        </div>
+    </div>
+
+    <!-- ===== CONCEITO 6: HTTP ===== -->
+    <div class="conceito">
+        <h2>📨 HTTP - O Idioma da Web</h2>
+
+        <p>HTTP (HyperText Transfer Protocol) é o "idioma" que cliente e servidor usam para conversar.</p>
+
+        <p><strong>Principais métodos HTTP:</strong></p>
+        <ul>
+            <li><code>GET</code> - Pedir uma página (maioria dos acessos)</li>
+            <li><code>POST</code> - Enviar dados (formulários, login)</li>
+            <li><code>PUT</code> - Atualizar dados existentes</li>
+            <li><code>DELETE</code> - Remover dados</li>
+        </ul>
+
+        <p><strong>Códigos de resposta comuns:</strong></p>
+        <ul>
+            <li><code>200 OK</code> - Tudo certo! ✅</li>
+            <li><code>404 Not Found</code> - Página não existe ❌</li>
+            <li><code>500 Internal Server Error</code> - Problema no servidor 💥</li>
+        </ul>
+    </div>
+
+    <!-- ===== EXERCÍCIO ===== -->
+    <div class="conceito" style="background: #e8f4fd;">
+        <h2>✏️ Exercício 3.1</h2>
+
+        <p><strong>Atividade:</strong> Desenhe no papel (ou no quadro) a jornada de uma requisição web.</p>
+
+        <ol>
+            <li>Desenhe um computador (cliente)</li>
+            <li>Desenhe um servidor</li>
+            <li>Mostre as setas de pedido e resposta</li>
+            <li>Escreva o que acontece em cada etapa</li>
+        </ol>
+
+        <p><strong>Discussão em grupo:</strong></p>
+        <ul>
+            <li>O que acontece quando a internet cai no meio do processo?</li>
+            <li>Por que alguns sites são mais rápidos que outros?</li>
+            <li>O que significa o cadeado 🔒 na barra de endereço?</li>
+        </ul>
+    </div>
+
+    <!-- ===== RESUMO ===== -->
+    <div class="conceito" style="background: #d5f5e3;">
+        <h2>📝 Resumo da Lição</h2>
+
+        <ul>
+            <li>✅ A web funciona com <strong>clientes</strong> (navegadores) e <strong>servidores</strong></li>
+            <li>✅ <strong>URL</strong> é o endereço único de cada página</li>
+            <li>✅ <strong>HTTP</strong> é o protocolo de comunicação</li>
+            <li>✅ <strong>HTML</strong> = estrutura, <strong>CSS</strong> = estilo, <strong>JS</strong> = interação</li>
+            <li>✅ O navegador transforma código em páginas visuais</li>
+        </ul>
+
+        <p style="font-size: 1.2em; text-align: center; margin-top: 20px;">
+            <strong>Na próxima lição:</strong> Vamos criar nossa primeira página HTML! 🚀
+        </p>
+    </div>
+
+    <footer style="text-align: center; margin-top: 40px; color: #666;">
+        <p>Módulo 3 - Suas Primeiras Páginas Web | Curso Python Backend</p>
+    </footer>
+
+</body>
+</html>

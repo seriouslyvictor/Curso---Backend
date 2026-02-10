@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!--
+============================================================
+LIÇÃO 3.5 - FORMULÁRIOS HTML
+============================================================
+Objetivo: Criar formulários para coletar dados do usuário
+Duração: 2 horas
+Resultado: Formulário de contato funcional
+============================================================
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lição 3.5 - Formulários HTML</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            color: #667eea;
+            margin: 25px 0 15px;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin: 20px 0 10px;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .codigo {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.85em;
+            overflow-x: auto;
+            white-space: pre;
+            margin: 10px 0;
+        }
+
+        code {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            color: #764ba2;
+        }
+
+        .dica {
+            background: #fff3cd;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+
+        /* ============================================
+           ESTILOS DE FORMULÁRIO
+           ============================================ */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="date"],
+        input[type="url"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        input:invalid {
+            border-color: #e74c3c;
+        }
+
+        input:valid {
+            border-color: #27ae60;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        button,
+        input[type="submit"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover,
+        input[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .checkbox-group label,
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        /* Formulário demo */
+        .form-demo {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📝 Lição 3.5 - Formulários HTML</h1>
+
+
+    <!-- ===== SEÇÃO 1: ESTRUTURA BÁSICA ===== -->
+    <div class="box">
+        <h2>1. Estrutura Básica de um Formulário</h2>
+
+        <div class="codigo">&lt;form action="/enviar" method="POST"&gt;
+    &lt;label for="nome"&gt;Nome:&lt;/label&gt;
+    &lt;input type="text" id="nome" name="nome"&gt;
+
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</div>
+
+        <ul>
+            <li><code>&lt;form&gt;</code> - Container do formulário</li>
+            <li><code>action</code> - Para onde os dados são enviados</li>
+            <li><code>method</code> - GET (na URL) ou POST (oculto)</li>
+            <li><code>&lt;label&gt;</code> - Rótulo do campo (clicável!)</li>
+            <li><code>for/id</code> - Conecta label ao input</li>
+            <li><code>name</code> - Nome do dado enviado ao servidor</li>
+        </ul>
+    </div>
+
+
+    <!-- ===== SEÇÃO 2: TIPOS DE INPUT ===== -->
+    <div class="box">
+        <h2>2. Tipos de Input</h2>
+
+        <p>HTML5 tem muitos tipos de input especializados:</p>
+
+        <div class="form-demo">
+            <div class="form-group">
+                <label>text - Texto simples</label>
+                <input type="text" placeholder="Digite seu nome">
+            </div>
+
+            <div class="form-group">
+                <label>email - Valida formato de email</label>
+                <input type="email" placeholder="email@exemplo.com">
+            </div>
+
+            <div class="form-group">
+                <label>password - Oculta os caracteres</label>
+                <input type="password" placeholder="Sua senha">
+            </div>
+
+            <div class="form-group">
+                <label>tel - Teclado numérico no celular</label>
+                <input type="tel" placeholder="(11) 99999-9999">
+            </div>
+
+            <div class="form-group">
+                <label>number - Apenas números</label>
+                <input type="number" min="0" max="100" value="50">
+            </div>
+
+            <div class="form-group">
+                <label>date - Seletor de data</label>
+                <input type="date">
+            </div>
+
+            <div class="form-group">
+                <label>url - Valida formato de URL</label>
+                <input type="url" placeholder="https://www.exemplo.com">
+            </div>
+
+            <div class="form-group">
+                <label>range - Slider</label>
+                <input type="range" min="0" max="100" value="50">
+            </div>
+
+            <div class="form-group">
+                <label>color - Seletor de cor</label>
+                <input type="color" value="#667eea">
+            </div>
+
+            <div class="form-group">
+                <label>file - Upload de arquivo</label>
+                <input type="file">
+            </div>
+        </div>
+
+        <div class="dica">
+            <strong>Vantagem:</strong> Em celulares, cada tipo mostra um teclado apropriado!
+        </div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 3: TEXTAREA E SELECT ===== -->
+    <div class="box">
+        <h2>3. Textarea e Select</h2>
+
+        <h3>Textarea - Texto longo</h3>
+        <div class="form-demo">
+            <div class="form-group">
+                <label for="mensagem">Sua mensagem:</label>
+                <textarea id="mensagem" placeholder="Digite sua mensagem aqui..."></textarea>
+            </div>
+        </div>
+
+        <h3>Select - Menu dropdown</h3>
+        <div class="form-demo">
+            <div class="form-group">
+                <label for="estado">Seu estado:</label>
+                <select id="estado">
+                    <option value="">Selecione...</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="BA">Bahia</option>
+                    <option value="outro">Outro</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="codigo">&lt;select name="estado"&gt;
+    &lt;option value=""&gt;Selecione...&lt;/option&gt;
+    &lt;option value="SP"&gt;São Paulo&lt;/option&gt;
+    &lt;option value="RJ"&gt;Rio de Janeiro&lt;/option&gt;
+&lt;/select&gt;</div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 4: CHECKBOX E RADIO ===== -->
+    <div class="box">
+        <h2>4. Checkbox e Radio</h2>
+
+        <h3>Checkbox - Múltiplas opções</h3>
+        <div class="form-demo">
+            <label style="margin-bottom: 10px;">Quais linguagens você conhece?</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="linguagens" value="python"> Python</label>
+                <label><input type="checkbox" name="linguagens" value="javascript"> JavaScript</label>
+                <label><input type="checkbox" name="linguagens" value="java"> Java</label>
+                <label><input type="checkbox" name="linguagens" value="csharp"> C#</label>
+            </div>
+        </div>
+
+        <h3>Radio - Apenas uma opção</h3>
+        <div class="form-demo">
+            <label style="margin-bottom: 10px;">Qual seu nível?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="nivel" value="iniciante"> Iniciante</label>
+                <label><input type="radio" name="nivel" value="intermediario"> Intermediário</label>
+                <label><input type="radio" name="nivel" value="avancado"> Avançado</label>
+            </div>
+        </div>
+
+        <div class="dica">
+            <strong>Dica:</strong> Radio buttons com o mesmo <code>name</code>
+            formam um grupo onde só um pode ser selecionado.
+        </div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 5: VALIDAÇÃO HTML5 ===== -->
+    <div class="box">
+        <h2>5. Validação HTML5</h2>
+
+        <p>HTML5 pode validar dados sem JavaScript!</p>
+
+        <div class="codigo">&lt;!-- Campo obrigatório --&gt;
+&lt;input type="text" required&gt;
+
+&lt;!-- Tamanho mínimo e máximo --&gt;
+&lt;input type="text" minlength="3" maxlength="50"&gt;
+
+&lt;!-- Valor numérico com limites --&gt;
+&lt;input type="number" min="18" max="100"&gt;
+
+&lt;!-- Padrão (regex) --&gt;
+&lt;input type="text" pattern="[0-9]{11}" title="Digite 11 dígitos"&gt;
+
+&lt;!-- Placeholder (dica) --&gt;
+&lt;input type="text" placeholder="Digite aqui..."&gt;</div>
+
+        <h3>Exemplo com validação:</h3>
+        <div class="form-demo">
+            <form onsubmit="event.preventDefault(); alert('Formulário válido!');">
+                <div class="form-group">
+                    <label>Nome (obrigatório, 3-50 caracteres):</label>
+                    <input type="text" required minlength="3" maxlength="50"
+                           placeholder="Seu nome completo">
+                </div>
+
+                <div class="form-group">
+                    <label>Idade (18-100):</label>
+                    <input type="number" required min="18" max="100"
+                           placeholder="Sua idade">
+                </div>
+
+                <div class="form-group">
+                    <label>CPF (11 dígitos):</label>
+                    <input type="text" pattern="[0-9]{11}"
+                           title="Digite 11 números sem pontos ou traços"
+                           placeholder="12345678901">
+                </div>
+
+                <button type="submit">Validar</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 6: FORMULÁRIO COMPLETO ===== -->
+    <div class="box">
+        <h2>6. Formulário de Contato Completo</h2>
+
+        <form class="form-demo" onsubmit="event.preventDefault(); alert('Mensagem enviada!');">
+
+            <div class="form-group">
+                <label for="fc-nome">👤 Nome Completo *</label>
+                <input type="text" id="fc-nome" name="nome" required
+                       placeholder="Seu nome completo">
+            </div>
+
+            <div class="form-group">
+                <label for="fc-email">📧 Email *</label>
+                <input type="email" id="fc-email" name="email" required
+                       placeholder="seu@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="fc-telefone">📞 Telefone</label>
+                <input type="tel" id="fc-telefone" name="telefone"
+                       placeholder="(11) 99999-9999">
+            </div>
+
+            <div class="form-group">
+                <label for="fc-assunto">📋 Assunto *</label>
+                <select id="fc-assunto" name="assunto" required>
+                    <option value="">Selecione um assunto...</option>
+                    <option value="duvida">Dúvida</option>
+                    <option value="sugestao">Sugestão</option>
+                    <option value="reclamacao">Reclamação</option>
+                    <option value="parceria">Parceria</option>
+                    <option value="outro">Outro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="fc-mensagem">💬 Mensagem *</label>
+                <textarea id="fc-mensagem" name="mensagem" required
+                          placeholder="Digite sua mensagem aqui..."
+                          minlength="10"></textarea>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="newsletter" value="sim">
+                        Desejo receber novidades por email
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="termos" required>
+                        Li e aceito os termos de uso *
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit">📤 Enviar Mensagem</button>
+
+        </form>
+    </div>
+
+
+    <!-- ===== SEÇÃO 7: ESTILOS CSS ===== -->
+    <div class="box">
+        <h2>7. Estilizando Formulários com CSS</h2>
+
+        <div class="codigo">/* Estilos básicos */
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+/* Quando o campo está focado */
+input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* Validação visual */
+input:valid {
+    border-color: #27ae60;
+}
+
+input:invalid {
+    border-color: #e74c3c;
+}
+
+/* Botão de envio */
+button[type="submit"] {
+    background: #667eea;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}</div>
+    </div>
+
+
+    <!-- ===== EXERCÍCIO ===== -->
+    <div class="box" style="background: linear-gradient(135deg, #e8f6ff 0%, #f0e6ff 100%);">
+        <h2 style="color: #e74c3c;">✏️ Exercício 3.5</h2>
+
+        <p>Crie um formulário de inscrição para um curso com:</p>
+        <ol>
+            <li>Nome completo (obrigatório)</li>
+            <li>Email (obrigatório, validado)</li>
+            <li>Data de nascimento</li>
+            <li>Telefone</li>
+            <li>Curso desejado (select com 4 opções)</li>
+            <li>Período preferido (radio: manhã/tarde/noite)</li>
+            <li>Como conheceu o curso (checkbox: múltiplas opções)</li>
+            <li>Observações (textarea)</li>
+            <li>Aceite de termos (checkbox obrigatório)</li>
+            <li>Botão de envio estilizado</li>
+        </ol>
+    </div>
+
+
+    <!-- ===== RESUMO ===== -->
+    <div class="box" style="background: linear-gradient(135deg, #d5f5e3 0%, #e8f6ff 100%);">
+        <h2>📝 Resumo da Lição</h2>
+
+        <ul>
+            <li>✅ <code>&lt;form&gt;</code> com action e method</li>
+            <li>✅ <code>&lt;label&gt;</code> conectado ao input com for/id</li>
+            <li>✅ Tipos de input: text, email, password, tel, number, date...</li>
+            <li>✅ <code>&lt;textarea&gt;</code> para textos longos</li>
+            <li>✅ <code>&lt;select&gt;</code> para menus dropdown</li>
+            <li>✅ Checkbox (múltiplas) e Radio (uma opção)</li>
+            <li>✅ Validação HTML5: required, minlength, pattern</li>
+            <li>✅ CSS para estilizar :focus, :valid, :invalid</li>
+        </ul>
+
+        <p style="text-align: center; margin-top: 20px; font-size: 1.2em;">
+            <strong>Próxima lição:</strong> Projeto Final - Portfólio! 🎨
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

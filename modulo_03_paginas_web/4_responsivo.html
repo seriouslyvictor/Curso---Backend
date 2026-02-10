@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!--
+============================================================
+LIÇÃO 3.4 - DESIGN RESPONSIVO
+============================================================
+Objetivo: Criar páginas que funcionam em qualquer tela
+Duração: 2 horas
+Resultado: Página que se adapta a celular, tablet e desktop
+============================================================
+-->
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- VIEWPORT: Essencial para responsividade! -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lição 3.4 - Design Responsivo</title>
+
+    <style>
+        /* ============================================
+           RESET E ESTILOS BASE
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #9b59b6;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #8e44ad;
+            margin: 30px 0 15px;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .codigo {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.85em;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        code {
+            background: #ecf0f1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            color: #8e44ad;
+        }
+
+        .dica {
+            background: #fff3cd;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+
+        /* ============================================
+           EXEMPLOS RESPONSIVOS
+           ============================================ */
+
+        /* ----- UNIDADES RELATIVAS ----- */
+        .demo-unidades {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .unidade-px {
+            width: 200px;  /* Fixo - NÃO muda */
+            background: #e74c3c;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .unidade-percent {
+            width: 50%;    /* Relativo ao pai */
+            background: #3498db;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .unidade-vw {
+            width: 80vw;   /* 80% da largura da tela */
+            max-width: 400px;
+            background: #27ae60;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+
+        /* ----- LAYOUT RESPONSIVO COM FLEXBOX ----- */
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            flex: 1 1 280px;  /* Cresce, encolhe, base 280px */
+            max-width: 350px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #9b59b6;
+            margin-bottom: 10px;
+        }
+
+
+        /* ----- GRID RESPONSIVO ----- */
+        .grid-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .grid-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+
+        /* ============================================
+           MEDIA QUERIES - O CORAÇÃO DO RESPONSIVO
+           ============================================ */
+
+        /* Estilos para CELULAR (até 600px) */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .box {
+                padding: 15px;
+            }
+
+            .demo-nav {
+                flex-direction: column;
+            }
+
+            .demo-nav a {
+                text-align: center;
+                padding: 15px;
+            }
+        }
+
+        /* Estilos para TABLET (601px a 900px) */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .cards-container {
+                justify-content: space-around;
+            }
+        }
+
+        /* Estilos para DESKTOP (acima de 900px) */
+        @media (min-width: 901px) {
+            h1 {
+                font-size: 2.5em;
+            }
+        }
+
+
+        /* ----- MENU RESPONSIVO ----- */
+        .demo-nav {
+            display: flex;
+            background: #2c3e50;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .demo-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            transition: background 0.3s;
+        }
+
+        .demo-nav a:hover {
+            background: #34495e;
+        }
+
+
+        /* ----- IMAGEM RESPONSIVA ----- */
+        .img-responsiva {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+
+        /* ----- INDICADOR DE TAMANHO ----- */
+        .tamanho-tela {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #9b59b6;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            z-index: 1000;
+        }
+
+        .tamanho-tela::after {
+            content: "📱 Mobile";
+        }
+
+        @media (min-width: 601px) {
+            .tamanho-tela::after {
+                content: "📱 Tablet";
+            }
+            .tamanho-tela {
+                background: #3498db;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .tamanho-tela::after {
+                content: "🖥️ Desktop";
+            }
+            .tamanho-tela {
+                background: #27ae60;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Indicador de tamanho da tela -->
+<div class="tamanho-tela"></div>
+
+<div class="container">
+
+    <h1>📱 Lição 3.4 - Design Responsivo</h1>
+
+    <p>Design responsivo faz sua página funcionar bem em <strong>qualquer dispositivo</strong>:
+    celular, tablet ou computador.</p>
+
+
+    <!-- ===== SEÇÃO 1: VIEWPORT ===== -->
+    <div class="box">
+        <h2>1. A Meta Tag Viewport</h2>
+
+        <p>Esta tag é <strong>obrigatória</strong> para responsividade:</p>
+
+        <div class="codigo">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</div>
+
+        <ul>
+            <li><code>width=device-width</code> - Largura igual à do dispositivo</li>
+            <li><code>initial-scale=1.0</code> - Zoom inicial de 100%</li>
+        </ul>
+
+        <div class="dica">
+            <strong>Sem essa tag:</strong> O celular mostra a versão desktop encolhida.
+            Com ela: O celular mostra uma versão adaptada.
+        </div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 2: UNIDADES RELATIVAS ===== -->
+    <div class="box">
+        <h2>2. Unidades Relativas vs Fixas</h2>
+
+        <p>Use unidades que se adaptam ao tamanho da tela:</p>
+
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+            <tr style="background: #9b59b6; color: white;">
+                <th style="padding: 10px; text-align: left;">Unidade</th>
+                <th style="padding: 10px; text-align: left;">Tipo</th>
+                <th style="padding: 10px; text-align: left;">Uso</th>
+            </tr>
+            <tr style="background: #f8f9fa;">
+                <td style="padding: 10px;"><code>px</code></td>
+                <td style="padding: 10px;">Fixa</td>
+                <td style="padding: 10px;">Bordas, sombras</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>%</code></td>
+                <td style="padding: 10px;">Relativa</td>
+                <td style="padding: 10px;">Larguras de containers</td>
+            </tr>
+            <tr style="background: #f8f9fa;">
+                <td style="padding: 10px;"><code>em</code></td>
+                <td style="padding: 10px;">Relativa</td>
+                <td style="padding: 10px;">Tamanho de fonte (relativo ao pai)</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>rem</code></td>
+                <td style="padding: 10px;">Relativa</td>
+                <td style="padding: 10px;">Tamanho de fonte (relativo à raiz)</td>
+            </tr>
+            <tr style="background: #f8f9fa;">
+                <td style="padding: 10px;"><code>vw / vh</code></td>
+                <td style="padding: 10px;">Relativa</td>
+                <td style="padding: 10px;">Viewport width/height</td>
+            </tr>
+        </table>
+
+        <h3>Exemplos (redimensione a janela!):</h3>
+        <div class="demo-unidades">
+            <div class="unidade-px">200px (fixo)</div>
+        </div>
+        <div class="demo-unidades">
+            <div class="unidade-percent">50% (metade do pai)</div>
+        </div>
+        <div class="demo-unidades">
+            <div class="unidade-vw">80vw (80% da tela)</div>
+        </div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 3: MEDIA QUERIES ===== -->
+    <div class="box">
+        <h2>3. Media Queries</h2>
+
+        <p>Media queries aplicam estilos diferentes conforme o tamanho da tela:</p>
+
+        <div class="codigo">/* Estilos padrão (mobile-first) */
+.menu {
+    flex-direction: column;
+}
+
+/* Tablet (601px ou mais) */
+@media (min-width: 601px) {
+    .menu {
+        flex-direction: row;
+    }
+}
+
+/* Desktop (901px ou mais) */
+@media (min-width: 901px) {
+    .container {
+        max-width: 1200px;
+    }
+}</div>
+
+        <h3>Breakpoints comuns:</h3>
+        <ul>
+            <li><strong>320px - 600px:</strong> Celulares</li>
+            <li><strong>601px - 900px:</strong> Tablets</li>
+            <li><strong>901px+:</strong> Desktops</li>
+        </ul>
+
+        <div class="dica">
+            <strong>Mobile-first:</strong> Comece com estilos para celular,
+            depois adicione complexidade para telas maiores.
+        </div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 4: MENU RESPONSIVO ===== -->
+    <div class="box">
+        <h2>4. Menu Responsivo</h2>
+
+        <p>Redimensione a janela para ver o menu mudar:</p>
+
+        <nav class="demo-nav">
+            <a href="#">🏠 Início</a>
+            <a href="#">👤 Sobre</a>
+            <a href="#">💼 Projetos</a>
+            <a href="#">📧 Contato</a>
+        </nav>
+
+        <div class="codigo" style="margin-top: 15px;">.nav {
+    display: flex;
+}
+
+@media (max-width: 600px) {
+    .nav {
+        flex-direction: column;  /* Empilha em celular */
+    }
+}</div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 5: CARDS FLEXÍVEIS ===== -->
+    <div class="box">
+        <h2>5. Cards Flexíveis</h2>
+
+        <p>Cards que se reorganizam automaticamente:</p>
+
+        <div class="cards-container">
+            <div class="card">
+                <h3>🎨 Design</h3>
+                <p>Criação de interfaces bonitas e funcionais.</p>
+            </div>
+            <div class="card">
+                <h3>💻 Código</h3>
+                <p>Desenvolvimento front-end e back-end.</p>
+            </div>
+            <div class="card">
+                <h3>🚀 Deploy</h3>
+                <p>Publicação e manutenção de sites.</p>
+            </div>
+        </div>
+
+        <div class="codigo" style="margin-top: 15px;">.cards-container {
+    display: flex;
+    flex-wrap: wrap;      /* Quebra linha quando necessário */
+    gap: 20px;
+}
+
+.card {
+    flex: 1 1 280px;      /* Cresce, encolhe, base mínima 280px */
+    max-width: 350px;
+}</div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 6: CSS GRID RESPONSIVO ===== -->
+    <div class="box">
+        <h2>6. Grid Responsivo (Auto-fit)</h2>
+
+        <p>Grid que cria colunas automaticamente:</p>
+
+        <div class="grid-demo">
+            <div class="grid-item">1</div>
+            <div class="grid-item">2</div>
+            <div class="grid-item">3</div>
+            <div class="grid-item">4</div>
+            <div class="grid-item">5</div>
+            <div class="grid-item">6</div>
+        </div>
+
+        <div class="codigo">.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+/* Cria quantas colunas couberem, mínimo 200px cada */</div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 7: IMAGENS RESPONSIVAS ===== -->
+    <div class="box">
+        <h2>7. Imagens Responsivas</h2>
+
+        <div class="codigo">img {
+    max-width: 100%;     /* Nunca maior que o container */
+    height: auto;        /* Mantém proporção */
+}</div>
+
+        <img src="https://via.placeholder.com/800x400/9b59b6/ffffff?text=Imagem+Responsiva"
+             alt="Exemplo de imagem responsiva"
+             class="img-responsiva"
+             style="margin-top: 15px;">
+        <p><em>Redimensione a janela - a imagem se adapta!</em></p>
+    </div>
+
+
+    <!-- ===== EXERCÍCIO ===== -->
+    <div class="box" style="background: #e8f6ff;">
+        <h2 style="color: #e74c3c;">✏️ Exercício 3.4</h2>
+
+        <p>Torne sua página de biografia responsiva:</p>
+        <ol>
+            <li>Adicione a meta tag viewport</li>
+            <li>Use unidades relativas (%, rem, vw)</li>
+            <li>Crie media queries para celular e desktop</li>
+            <li>Faça o menu empilhar em telas pequenas</li>
+            <li>Use flexbox ou grid para cards</li>
+            <li>Teste redimensionando o navegador</li>
+        </ol>
+
+        <div class="dica">
+            <strong>Teste:</strong> No Chrome, pressione F12 → clique no ícone de celular
+            para simular diferentes dispositivos.
+        </div>
+    </div>
+
+
+    <!-- ===== RESUMO ===== -->
+    <div class="box" style="background: #d5f5e3;">
+        <h2>📝 Resumo da Lição</h2>
+
+        <ul>
+            <li>✅ Meta viewport é obrigatória</li>
+            <li>✅ Use unidades relativas (%, rem, vw)</li>
+            <li>✅ Media queries alteram estilos por tamanho</li>
+            <li>✅ Flexbox + flex-wrap para layouts flexíveis</li>
+            <li>✅ Grid + auto-fit para grids automáticos</li>
+            <li>✅ Mobile-first: comece pelo celular</li>
+        </ul>
+
+        <p style="text-align: center; margin-top: 20px; font-size: 1.2em;">
+            <strong>Próxima lição:</strong> Formulários HTML 📝
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

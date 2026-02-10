@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!--
+============================================================
+LIÇÃO 3.3 - CSS: DEIXANDO A PÁGINA BONITA
+============================================================
+Objetivo: Aprender a estilizar páginas com CSS
+Duração: 3 horas
+Resultado: Página de biografia estilizada
+============================================================
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lição 3.3 - CSS: Estilizando Páginas</title>
+
+    <style>
+        /* ============================================
+           CSS = Cascading Style Sheets
+           Controla COMO os elementos aparecem
+           ============================================ */
+
+
+        /* ----- RESET BÁSICO ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ----- ESTILOS DO CORPO ----- */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        /* ----- CONTAINER PRINCIPAL ----- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ----- ESTILOS DE TÍTULOS ----- */
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #2980b9;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #27ae60;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        /* ----- PARÁGRAFOS ----- */
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* ----- CAIXAS DE CONTEÚDO ----- */
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .box-codigo {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .box-exemplo {
+            background: #e8f6ff;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .box-dica {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        /* ----- CÓDIGO INLINE ----- */
+        code {
+            background: #ecf0f1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🎨 Lição 3.3 - CSS: Deixando a Página Bonita</h1>
+
+    <p>CSS (Cascading Style Sheets) controla a <strong>aparência</strong> das páginas.
+    Enquanto HTML define o conteúdo, CSS define como ele aparece.</p>
+
+
+    <!-- ===== SEÇÃO 1: FORMAS DE USAR CSS ===== -->
+    <div class="box">
+        <h2>1. Três Formas de Usar CSS</h2>
+
+        <h3>1.1 CSS Inline (na própria tag)</h3>
+        <div class="box-codigo">&lt;p style="color: red; font-size: 20px;"&gt;Texto vermelho&lt;/p&gt;</div>
+        <p style="color: red; font-size: 20px;">Texto vermelho</p>
+        <p>⚠️ Evite! Difícil de manter.</p>
+
+        <h3>1.2 CSS Interno (no &lt;head&gt;)</h3>
+        <div class="box-codigo">&lt;style&gt;
+    p { color: blue; }
+&lt;/style&gt;</div>
+        <p>✅ Bom para páginas únicas.</p>
+
+        <h3>1.3 CSS Externo (arquivo separado)</h3>
+        <div class="box-codigo">&lt;link rel="stylesheet" href="estilo.css"&gt;</div>
+        <p>✅ <strong>Melhor opção!</strong> Um arquivo para todo o site.</p>
+    </div>
+
+
+    <!-- ===== SEÇÃO 2: SELETORES ===== -->
+    <div class="box">
+        <h2>2. Seletores CSS</h2>
+
+        <p>Seletores definem QUAIS elementos serão estilizados.</p>
+
+        <h3>Seletor de Tag</h3>
+        <div class="box-codigo">p {
+    color: blue;
+}
+/* Afeta TODOS os parágrafos */</div>
+
+        <h3>Seletor de Classe (.)</h3>
+        <div class="box-codigo">.destaque {
+    background: yellow;
+}
+/* Afeta elementos com class="destaque" */</div>
+        <div class="box-exemplo">
+            <p>Texto normal</p>
+            <p style="background: yellow; padding: 5px;">Texto com classe destaque</p>
+        </div>
+
+        <h3>Seletor de ID (#)</h3>
+        <div class="box-codigo">#titulo-principal {
+    font-size: 3em;
+}
+/* Afeta UM elemento com id="titulo-principal" */</div>
+
+        <div class="box-dica">
+            <strong>Regra:</strong> Use classes para estilos reutilizáveis, IDs para elementos únicos.
+        </div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 3: CORES ===== -->
+    <div class="box">
+        <h2>3. Cores</h2>
+
+        <p>Várias formas de definir cores:</p>
+
+        <div class="box-codigo">/* Por nome */
+color: red;
+color: blue;
+color: tomato;
+
+/* Hexadecimal */
+color: #ff0000;  /* vermelho */
+color: #3498db;  /* azul bonito */
+
+/* RGB */
+color: rgb(255, 0, 0);
+
+/* RGBA (com transparência) */
+color: rgba(0, 0, 0, 0.5);  /* preto 50% transparente */</div>
+
+        <h3>Exemplos de cores:</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+            <span style="background: #e74c3c; color: white; padding: 10px; border-radius: 5px;">#e74c3c</span>
+            <span style="background: #3498db; color: white; padding: 10px; border-radius: 5px;">#3498db</span>
+            <span style="background: #2ecc71; color: white; padding: 10px; border-radius: 5px;">#2ecc71</span>
+            <span style="background: #9b59b6; color: white; padding: 10px; border-radius: 5px;">#9b59b6</span>
+            <span style="background: #f39c12; color: white; padding: 10px; border-radius: 5px;">#f39c12</span>
+            <span style="background: #1abc9c; color: white; padding: 10px; border-radius: 5px;">#1abc9c</span>
+        </div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 4: TIPOGRAFIA ===== -->
+    <div class="box">
+        <h2>4. Tipografia (Fontes)</h2>
+
+        <div class="box-codigo">p {
+    font-family: Arial, sans-serif;  /* Tipo da fonte */
+    font-size: 16px;                 /* Tamanho */
+    font-weight: bold;               /* Peso (normal, bold, 100-900) */
+    font-style: italic;              /* Estilo (normal, italic) */
+    text-align: center;              /* Alinhamento */
+    text-decoration: underline;      /* Decoração */
+    line-height: 1.6;                /* Altura da linha */
+    letter-spacing: 2px;             /* Espaço entre letras */
+}</div>
+
+        <h3>Exemplos:</h3>
+        <p style="font-family: Georgia, serif; font-size: 18px;">Fonte Georgia (serifada)</p>
+        <p style="font-family: Arial, sans-serif; font-size: 18px;">Fonte Arial (sem serifa)</p>
+        <p style="font-weight: bold; font-size: 18px;">Texto em negrito</p>
+        <p style="font-style: italic; font-size: 18px;">Texto em itálico</p>
+        <p style="text-align: center; font-size: 18px;">Texto centralizado</p>
+        <p style="text-decoration: underline; font-size: 18px;">Texto sublinhado</p>
+    </div>
+
+
+    <!-- ===== SEÇÃO 5: BOX MODEL ===== -->
+    <div class="box">
+        <h2>5. Box Model (Modelo de Caixa)</h2>
+
+        <p>Todo elemento HTML é uma "caixa" com 4 partes:</p>
+
+        <div style="text-align: center; margin: 20px 0;">
+            <div style="background: #ffcccc; padding: 20px; display: inline-block; border: 3px solid #e74c3c;">
+                <div style="background: #ffffcc; padding: 20px; border: 3px dashed #f39c12;">
+                    <div style="background: #ccffcc; padding: 20px; border: 3px solid #27ae60;">
+                        <div style="background: #cce5ff; padding: 20px;">
+                            CONTEÚDO
+                        </div>
+                        <small>← padding →</small>
+                    </div>
+                    <small>← border →</small>
+                </div>
+                <small>← margin →</small>
+            </div>
+        </div>
+
+        <div class="box-codigo">div {
+    width: 300px;           /* Largura do conteúdo */
+    height: 200px;          /* Altura do conteúdo */
+
+    padding: 20px;          /* Espaço interno */
+    padding-top: 10px;      /* Só em cima */
+    padding: 10px 20px;     /* vertical horizontal */
+
+    border: 2px solid blue; /* Borda */
+    border-radius: 10px;    /* Bordas arredondadas */
+
+    margin: 20px;           /* Espaço externo */
+    margin: 0 auto;         /* Centralizar horizontalmente */
+}</div>
+
+        <div class="box-dica">
+            <strong>Dica:</strong> Use <code>box-sizing: border-box;</code> para que
+            padding e border não aumentem o tamanho total do elemento.
+        </div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 6: BACKGROUND ===== -->
+    <div class="box">
+        <h2>6. Backgrounds</h2>
+
+        <div class="box-codigo">div {
+    background-color: #3498db;
+    background-image: url('imagem.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}</div>
+
+        <h3>Exemplos:</h3>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+            <div style="width: 150px; height: 100px; background: linear-gradient(to right, #e74c3c, #f39c12); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white;">
+                Gradiente
+            </div>
+            <div style="width: 150px; height: 100px; background: #3498db; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white;">
+                Cor sólida
+            </div>
+            <div style="width: 150px; height: 100px; background: repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white;">
+                Padrão
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 7: FLEXBOX ===== -->
+    <div class="box">
+        <h2>7. Flexbox (Layout Flexível)</h2>
+
+        <p>Flexbox é a forma moderna de organizar elementos lado a lado.</p>
+
+        <div class="box-codigo">.container {
+    display: flex;           /* Ativa flexbox */
+    justify-content: center; /* Alinha horizontalmente */
+    align-items: center;     /* Alinha verticalmente */
+    gap: 20px;              /* Espaço entre itens */
+    flex-wrap: wrap;         /* Quebra linha se não couber */
+}</div>
+
+        <h3>justify-content (eixo horizontal):</h3>
+        <div style="background: #ecf0f1; padding: 15px; margin: 10px 0;">
+            <p><code>flex-start</code></p>
+            <div style="display: flex; justify-content: flex-start; gap: 10px;">
+                <div style="background: #3498db; color: white; padding: 10px;">1</div>
+                <div style="background: #3498db; color: white; padding: 10px;">2</div>
+                <div style="background: #3498db; color: white; padding: 10px;">3</div>
+            </div>
+        </div>
+        <div style="background: #ecf0f1; padding: 15px; margin: 10px 0;">
+            <p><code>center</code></p>
+            <div style="display: flex; justify-content: center; gap: 10px;">
+                <div style="background: #e74c3c; color: white; padding: 10px;">1</div>
+                <div style="background: #e74c3c; color: white; padding: 10px;">2</div>
+                <div style="background: #e74c3c; color: white; padding: 10px;">3</div>
+            </div>
+        </div>
+        <div style="background: #ecf0f1; padding: 15px; margin: 10px 0;">
+            <p><code>space-between</code></p>
+            <div style="display: flex; justify-content: space-between; gap: 10px;">
+                <div style="background: #27ae60; color: white; padding: 10px;">1</div>
+                <div style="background: #27ae60; color: white; padding: 10px;">2</div>
+                <div style="background: #27ae60; color: white; padding: 10px;">3</div>
+            </div>
+        </div>
+        <div style="background: #ecf0f1; padding: 15px; margin: 10px 0;">
+            <p><code>space-around</code></p>
+            <div style="display: flex; justify-content: space-around; gap: 10px;">
+                <div style="background: #9b59b6; color: white; padding: 10px;">1</div>
+                <div style="background: #9b59b6; color: white; padding: 10px;">2</div>
+                <div style="background: #9b59b6; color: white; padding: 10px;">3</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ===== SEÇÃO 8: HOVER E TRANSIÇÕES ===== -->
+    <div class="box">
+        <h2>8. Hover e Transições</h2>
+
+        <style>
+            .botao {
+                background: #3498db;
+                color: white;
+                padding: 15px 30px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .botao:hover {
+                background: #2980b9;
+                transform: scale(1.05);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+
+            .card {
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            }
+        </style>
+
+        <div class="box-codigo">.botao {
+    background: #3498db;
+    transition: all 0.3s ease;  /* Animação suave */
+}
+
+.botao:hover {
+    background: #2980b9;
+    transform: scale(1.05);     /* Aumenta 5% */
+}</div>
+
+        <h3>Exemplos interativos (passe o mouse):</h3>
+        <div style="display: flex; gap: 20px; margin-top: 15px; flex-wrap: wrap;">
+            <button class="botao">Botão com hover</button>
+
+            <div class="card" style="width: 200px;">
+                <h4>Card elevável</h4>
+                <p>Passe o mouse aqui!</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ===== EXERCÍCIO ===== -->
+    <div class="box" style="background: #e8f6ff;">
+        <h2 style="color: #e74c3c;">✏️ Exercício 3.3</h2>
+
+        <p>Pegue sua página de biografia da Lição 3.2 e adicione:</p>
+        <ol>
+            <li>Uma paleta de cores consistente</li>
+            <li>Fontes personalizadas</li>
+            <li>Box model (padding, margin, border)</li>
+            <li>Flexbox para organizar seções</li>
+            <li>Efeitos hover em links e botões</li>
+            <li>Sombras e bordas arredondadas</li>
+        </ol>
+    </div>
+
+
+    <!-- ===== RESUMO ===== -->
+    <div class="box" style="background: #d5f5e3;">
+        <h2>📝 Resumo da Lição</h2>
+
+        <ul>
+            <li>✅ CSS controla a aparência (cores, fontes, layout)</li>
+            <li>✅ Seletores: tag, .classe, #id</li>
+            <li>✅ Box Model: content → padding → border → margin</li>
+            <li>✅ Flexbox para layouts flexíveis</li>
+            <li>✅ Transições para animações suaves</li>
+            <li>✅ :hover para interatividade</li>
+        </ul>
+
+        <p style="text-align: center; margin-top: 20px; font-size: 1.2em;">
+            <strong>Próxima lição:</strong> Design Responsivo 📱
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

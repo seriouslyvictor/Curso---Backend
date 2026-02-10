@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!--
+============================================================
+LIÇÃO 3.2 - HTML: O ESQUELETO DA PÁGINA
+============================================================
+Objetivo: Aprender as tags HTML essenciais
+Duração: 2 horas
+Resultado: Uma página de biografia pessoal
+
+COMO USAR ESTE ARQUIVO:
+1. Abra no navegador para ver o resultado
+2. Abra no VS Code para estudar o código
+3. Modifique e veja as mudanças!
+============================================================
+-->
+
+<head>
+    <!-- META TAGS - Informações sobre a página -->
+    <meta charset="UTF-8">
+    <!-- charset="UTF-8" permite usar acentos: á é í ó ú ã -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- viewport faz a página funcionar bem no celular -->
+
+    <title>Minha Primeira Página HTML</title>
+    <!-- title aparece na aba do navegador -->
+
+    <!-- CSS básico para a página ficar legível -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .exemplo {
+            background: #f0f0f0;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+        }
+        .codigo {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; }
+        h2 { color: #2980b9; margin-top: 40px; }
+        h3 { color: #27ae60; }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== CABEÇALHO DA LIÇÃO ===== -->
+    <h1>📄 Lição 3.2 - HTML: O Esqueleto da Página</h1>
+
+    <p>HTML (HyperText Markup Language) é a linguagem que define a
+    <strong>estrutura</strong> de uma página web. Não é uma linguagem de
+    programação - é uma linguagem de <em>marcação</em>.</p>
+
+
+    <!-- ===== SEÇÃO 1: ESTRUTURA BÁSICA ===== -->
+    <h2>1. Estrutura Básica de um HTML</h2>
+
+    <div class="codigo">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Título da Página&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    Conteúdo visível aqui
+&lt;/body&gt;
+&lt;/html&gt;
+    </div>
+
+    <ul>
+        <li><code>&lt;!DOCTYPE html&gt;</code> - Diz ao navegador que é HTML5</li>
+        <li><code>&lt;html&gt;</code> - Elemento raiz, contém tudo</li>
+        <li><code>&lt;head&gt;</code> - Informações sobre a página (não visíveis)</li>
+        <li><code>&lt;body&gt;</code> - Conteúdo visível da página</li>
+    </ul>
+
+
+    <!-- ===== SEÇÃO 2: TÍTULOS ===== -->
+    <h2>2. Títulos (Headings)</h2>
+
+    <p>HTML tem 6 níveis de títulos, do maior (h1) ao menor (h6):</p>
+
+    <div class="exemplo">
+        <h1 style="margin: 5px 0;">Título h1 - Principal</h1>
+        <h2 style="margin: 5px 0;">Título h2 - Seção</h2>
+        <h3 style="margin: 5px 0;">Título h3 - Subseção</h3>
+        <h4 style="margin: 5px 0;">Título h4</h4>
+        <h5 style="margin: 5px 0;">Título h5</h5>
+        <h6 style="margin: 5px 0;">Título h6</h6>
+    </div>
+
+    <p><strong>Regra:</strong> Use apenas UM h1 por página (o título principal).</p>
+
+
+    <!-- ===== SEÇÃO 3: PARÁGRAFOS E TEXTO ===== -->
+    <h2>3. Parágrafos e Formatação de Texto</h2>
+
+    <h3>Parágrafo</h3>
+    <p>Use a tag <code>&lt;p&gt;</code> para parágrafos.</p>
+
+    <div class="exemplo">
+        <p>Este é um parágrafo. Ele tem espaço automático acima e abaixo.</p>
+        <p>Este é outro parágrafo. Note o espaço entre eles.</p>
+    </div>
+
+    <h3>Formatação de texto</h3>
+    <ul>
+        <li><code>&lt;strong&gt;</code> - <strong>Texto importante (negrito)</strong></li>
+        <li><code>&lt;em&gt;</code> - <em>Texto enfatizado (itálico)</em></li>
+        <li><code>&lt;mark&gt;</code> - <mark>Texto destacado</mark></li>
+        <li><code>&lt;del&gt;</code> - <del>Texto deletado</del></li>
+        <li><code>&lt;code&gt;</code> - <code>Código de programação</code></li>
+    </ul>
+
+    <h3>Quebra de linha</h3>
+    <p>Para quebrar linha sem novo parágrafo, use <code>&lt;br&gt;</code>:</p>
+    <div class="exemplo">
+        Linha 1<br>
+        Linha 2<br>
+        Linha 3
+    </div>
+
+
+    <!-- ===== SEÇÃO 4: LINKS ===== -->
+    <h2>4. Links (Âncoras)</h2>
+
+    <p>Links conectam páginas. Use a tag <code>&lt;a&gt;</code>:</p>
+
+    <div class="codigo">
+&lt;a href="https://www.google.com"&gt;Ir para o Google&lt;/a&gt;
+    </div>
+
+    <div class="exemplo">
+        <p><a href="https://www.google.com">Ir para o Google</a></p>
+        <p><a href="https://www.google.com" target="_blank">Abrir Google em nova aba</a></p>
+        <p><a href="#topo">Voltar ao topo da página</a></p>
+        <p><a href="mailto:email@exemplo.com">Enviar email</a></p>
+    </div>
+
+    <p><code>target="_blank"</code> abre o link em uma nova aba.</p>
+
+
+    <!-- ===== SEÇÃO 5: IMAGENS ===== -->
+    <h2>5. Imagens</h2>
+
+    <p>Use a tag <code>&lt;img&gt;</code> para inserir imagens:</p>
+
+    <div class="codigo">
+&lt;img src="foto.jpg" alt="Descrição da imagem" width="300"&gt;
+    </div>
+
+    <ul>
+        <li><code>src</code> - Caminho da imagem (obrigatório)</li>
+        <li><code>alt</code> - Texto alternativo para acessibilidade (obrigatório!)</li>
+        <li><code>width</code> / <code>height</code> - Dimensões em pixels</li>
+    </ul>
+
+    <div class="exemplo">
+        <!-- Usando uma imagem de placeholder -->
+        <img src="https://via.placeholder.com/300x200/3498db/ffffff?text=Exemplo+de+Imagem"
+             alt="Exemplo de imagem placeholder"
+             width="300">
+        <p><em>Imagem de exemplo (placeholder)</em></p>
+    </div>
+
+
+    <!-- ===== SEÇÃO 6: LISTAS ===== -->
+    <h2>6. Listas</h2>
+
+    <h3>Lista não ordenada (bolinhas)</h3>
+    <div class="codigo">
+&lt;ul&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+    &lt;li&gt;Item 3&lt;/li&gt;
+&lt;/ul&gt;
+    </div>
+
+    <div class="exemplo">
+        <ul>
+            <li>Maçã</li>
+            <li>Banana</li>
+            <li>Laranja</li>
+        </ul>
+    </div>
+
+    <h3>Lista ordenada (números)</h3>
+    <div class="codigo">
+&lt;ol&gt;
+    &lt;li&gt;Primeiro passo&lt;/li&gt;
+    &lt;li&gt;Segundo passo&lt;/li&gt;
+    &lt;li&gt;Terceiro passo&lt;/li&gt;
+&lt;/ol&gt;
+    </div>
+
+    <div class="exemplo">
+        <ol>
+            <li>Acordar</li>
+            <li>Tomar café</li>
+            <li>Estudar Python</li>
+        </ol>
+    </div>
+
+
+    <!-- ===== SEÇÃO 7: DIVISÕES E SEMÂNTICA ===== -->
+    <h2>7. Tags Semânticas</h2>
+
+    <p>Tags semânticas dão significado ao conteúdo:</p>
+
+    <div class="codigo">
+&lt;header&gt;Cabeçalho do site&lt;/header&gt;
+&lt;nav&gt;Menu de navegação&lt;/nav&gt;
+&lt;main&gt;Conteúdo principal&lt;/main&gt;
+&lt;section&gt;Uma seção do conteúdo&lt;/section&gt;
+&lt;article&gt;Um artigo independente&lt;/article&gt;
+&lt;aside&gt;Conteúdo lateral&lt;/aside&gt;
+&lt;footer&gt;Rodapé do site&lt;/footer&gt;
+    </div>
+
+    <div class="exemplo">
+        <img src="https://via.placeholder.com/700x300/2c3e50/ffffff?text=Estrutura+Semantica:+header+>+nav+>+main+>+footer"
+             alt="Diagrama de estrutura semântica"
+             style="width: 100%; max-width: 700px;">
+    </div>
+
+
+    <!-- ===== SEÇÃO 8: TABELAS ===== -->
+    <h2>8. Tabelas</h2>
+
+    <div class="codigo">
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Nome&lt;/th&gt;
+        &lt;th&gt;Idade&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Maria&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+    </div>
+
+    <div class="exemplo">
+        <table border="1" style="border-collapse: collapse; width: 100%;">
+            <tr style="background: #3498db; color: white;">
+                <th style="padding: 10px;">Nome</th>
+                <th style="padding: 10px;">Idade</th>
+                <th style="padding: 10px;">Cidade</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">Maria</td>
+                <td style="padding: 10px;">25</td>
+                <td style="padding: 10px;">São Paulo</td>
+            </tr>
+            <tr style="background: #f8f9fa;">
+                <td style="padding: 10px;">João</td>
+                <td style="padding: 10px;">30</td>
+                <td style="padding: 10px;">Rio de Janeiro</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!-- ===== EXERCÍCIO ===== -->
+    <h2 style="color: #e74c3c;">✏️ Exercício 3.2 - Página de Biografia</h2>
+
+    <p>Crie uma página HTML sobre você com:</p>
+    <ol>
+        <li>Um título h1 com seu nome</li>
+        <li>Uma foto sua (ou placeholder)</li>
+        <li>Parágrafos sobre você</li>
+        <li>Lista de hobbies</li>
+        <li>Link para sua rede social favorita</li>
+        <li>Uma tabela com suas matérias e notas</li>
+    </ol>
+
+    <hr>
+
+    <!-- ===== EXEMPLO DE BIOGRAFIA ===== -->
+    <h2>Exemplo: Página de Biografia</h2>
+
+    <div style="border: 2px solid #3498db; padding: 20px; border-radius: 10px; margin-top: 20px;">
+
+        <header style="text-align: center;">
+            <h1 style="border: none;">👋 Olá, eu sou Maria Silva!</h1>
+            <p><em>Estudante de programação | Sonhadora | Futura dev</em></p>
+        </header>
+
+        <img src="https://via.placeholder.com/150x150/9b59b6/ffffff?text=Foto"
+             alt="Foto de Maria"
+             style="border-radius: 50%; float: right; margin-left: 20px;">
+
+        <section>
+            <h2>Sobre Mim</h2>
+            <p>Tenho <strong>17 anos</strong> e moro em <em>São Paulo</em>.
+            Estou aprendendo programação porque quero criar sites e aplicativos
+            que ajudem as pessoas.</p>
+
+            <p>Nas horas vagas, gosto de assistir séries, jogar videogame
+            e passar tempo com minha família.</p>
+        </section>
+
+        <section>
+            <h2>Meus Hobbies</h2>
+            <ul>
+                <li>🎮 Jogar videogame</li>
+                <li>📚 Ler livros de ficção</li>
+                <li>🎵 Ouvir música</li>
+                <li>💻 Aprender programação</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Minhas Notas</h2>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr style="background: #9b59b6; color: white;">
+                    <th style="padding: 8px;">Matéria</th>
+                    <th style="padding: 8px;">Nota</th>
+                </tr>
+                <tr>
+                    <td style="padding: 8px;">Português</td>
+                    <td style="padding: 8px;">8.5</td>
+                </tr>
+                <tr style="background: #f8f9fa;">
+                    <td style="padding: 8px;">Matemática</td>
+                    <td style="padding: 8px;">9.0</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px;">Informática</td>
+                    <td style="padding: 8px;">10.0</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Me Encontre</h2>
+            <p>
+                <a href="https://instagram.com" target="_blank">📷 Instagram</a> |
+                <a href="https://github.com" target="_blank">💻 GitHub</a> |
+                <a href="mailto:maria@email.com">📧 Email</a>
+            </p>
+        </section>
+
+        <footer style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+            <p>Feito com ❤️ por Maria Silva - 2025</p>
+        </footer>
+
+    </div>
+
+
+    <!-- ===== RESUMO ===== -->
+    <h2 style="margin-top: 50px;">📝 Resumo da Lição</h2>
+
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr style="background: #2c3e50; color: white;">
+            <th style="padding: 10px;">Tag</th>
+            <th style="padding: 10px;">Uso</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><code>&lt;h1&gt; a &lt;h6&gt;</code></td>
+            <td style="padding: 8px;">Títulos</td>
+        </tr>
+        <tr style="background: #f8f9fa;">
+            <td style="padding: 8px;"><code>&lt;p&gt;</code></td>
+            <td style="padding: 8px;">Parágrafos</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><code>&lt;a href=""&gt;</code></td>
+            <td style="padding: 8px;">Links</td>
+        </tr>
+        <tr style="background: #f8f9fa;">
+            <td style="padding: 8px;"><code>&lt;img src="" alt=""&gt;</code></td>
+            <td style="padding: 8px;">Imagens</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><code>&lt;ul&gt; &lt;ol&gt; &lt;li&gt;</code></td>
+            <td style="padding: 8px;">Listas</td>
+        </tr>
+        <tr style="background: #f8f9fa;">
+            <td style="padding: 8px;"><code>&lt;table&gt; &lt;tr&gt; &lt;td&gt;</code></td>
+            <td style="padding: 8px;">Tabelas</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><code>&lt;header&gt; &lt;main&gt; &lt;footer&gt;</code></td>
+            <td style="padding: 8px;">Estrutura semântica</td>
+        </tr>
+    </table>
+
+    <p style="text-align: center; margin-top: 30px; font-size: 1.2em;">
+        <strong>Próxima lição:</strong> CSS - Deixando a página bonita! 🎨
+    </p>
+
+</body>
+</html>
