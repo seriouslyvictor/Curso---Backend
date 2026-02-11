@@ -1,0 +1,37 @@
+{% extends "projeto/base.html" %}
+
+{% block titulo %}Sobre - TaskPy{% endblock %}
+
+{% block conteudo %}
+<h1>Sobre o TaskPy</h1>
+
+<div class="card">
+    <h2>📋 O que é?</h2>
+    <p>
+        TaskPy é um gerenciador de tarefas web criado como projeto do
+        <strong>Módulo 4 - Backend com Flask</strong> do curso Python Backend Developer.
+    </p>
+</div>
+
+<div class="card">
+    <h2>🛠️ O que usamos</h2>
+    <ul>
+        <li><strong>Python + Flask</strong> — Backend (servidor)</li>
+        <li><strong>Jinja2</strong> — Templates (HTML dinâmico)</li>
+        <li><strong>Herança de templates</strong> — Layout consistente</li>
+        <li><strong>Formulários POST</strong> — Criar tarefas</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>📚 Conceitos do Módulo 4</h2>
+    <table>
+        <tr><th>Lição</th><th>Conceito</th><th>Usado aqui</th></tr>
+        <tr><td>4.1</td><td>Hello Flask</td><td>Servidor web rodando</td></tr>
+        <tr><td>4.2</td><td>Rotas dinâmicas</td><td>/concluir/&lt;id&gt;, /excluir/&lt;id&gt;</td></tr>
+        <tr><td>4.3</td><td>Templates Jinja2</td><td>{% raw %}{{ variavel }}{% endraw %}, {% raw %}{% for %}{% endraw %}, {% raw %}{% if %}{% endraw %}</td></tr>
+        <tr><td>4.4</td><td>Herança de templates</td><td>base.html com blocos</td></tr>
+        <tr><td>4.5</td><td>Formulários POST</td><td>Criar tarefa, concluir, excluir</td></tr>
+    </table>
+</div>
+{% endblock %}

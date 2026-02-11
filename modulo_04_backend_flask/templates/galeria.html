@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block titulo %}Galeria - Meu Site Flask{% endblock %}
+
+{% block conteudo %}
+<h1>Galeria de Projetos</h1>
+
+{% if projetos %}
+<div class="grid">
+    {% for projeto in projetos %}
+    <div class="card" style="text-align: center;">
+        <p style="font-size: 48px;">{{ projeto.emoji }}</p>
+        <h3>{{ projeto.nome }}</h3>
+        <p>{{ projeto.descricao }}</p>
+        <span class="badge">{{ projeto.modulo }}</span>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card" style="text-align: center;">
+    <p style="font-size: 48px;">🚧</p>
+    <p>Nenhum projeto para mostrar ainda.</p>
+</div>
+{% endif %}
+{% endblock %}

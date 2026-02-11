@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block titulo %}Contato - Meu Site Flask{% endblock %}
+
+{% block conteudo %}
+<h1>Fale Conosco</h1>
+
+<div class="card">
+    <h2>📧 Informações de Contato</h2>
+    <p>Este é um projeto de estudo do curso Python Backend.</p>
+    <p>Em breve, este formulário vai funcionar de verdade (Lição 4.5)!</p>
+</div>
+
+<div class="card">
+    <h2>✉️ Envie uma Mensagem</h2>
+    <form style="display: flex; flex-direction: column; gap: 15px;">
+        <div>
+            <label for="nome" style="display: block; margin-bottom: 5px; font-weight: bold;">Nome:</label>
+            <input type="text" id="nome" placeholder="Seu nome"
+                   style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+        </div>
+        <div>
+            <label for="email" style="display: block; margin-bottom: 5px; font-weight: bold;">Email:</label>
+            <input type="email" id="email" placeholder="seu@email.com"
+                   style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+        </div>
+        <div>
+            <label for="mensagem" style="display: block; margin-bottom: 5px; font-weight: bold;">Mensagem:</label>
+            <textarea id="mensagem" rows="4" placeholder="Sua mensagem..."
+                      style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;"></textarea>
+        </div>
+        <button type="submit" style="background: #3498db; color: white; border: none;
+                padding: 12px; border-radius: 5px; font-size: 16px; cursor: pointer;">
+            Enviar Mensagem
+        </button>
+    </form>
+    <p style="color: #999; margin-top: 10px; font-size: 14px;">
+        * Na Lição 4.5 vamos fazer este formulário funcionar de verdade!
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "projeto/base.html" %}
+
+{% block titulo %}TaskPy - Suas Tarefas{% endblock %}
+
+{% block conteudo %}
+<h1>📋 Minhas Tarefas</h1>
+
+<!-- Estatísticas -->
+<div class="stats">
+    <div class="stat-box">
+        <div class="stat-numero">{{ total }}</div>
+        <div class="stat-label">Total</div>
+    </div>
+    <div class="stat-box">
+        <div class="stat-numero">{{ pendentes }}</div>
+        <div class="stat-label">Pendentes</div>
+    </div>
+    <div class="stat-box">
+        <div class="stat-numero">{{ concluidas }}</div>
+        <div class="stat-label">Concluídas</div>
+    </div>
+</div>
+
+{% if mensagem %}
+<div class="mensagem-sucesso">{{ mensagem }}</div>
+{% endif %}
+
+<!-- Lista de tarefas -->
+<div class="card">
+    {% if tarefas %}
+    <table>
+        <tr>
+            <th>Tarefa</th>
+            <th>Prioridade</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+        {% for tarefa in tarefas %}
+        <tr>
+            <td>
+                {% if tarefa.concluida %}
+                    <s style="color: #999;">{{ tarefa.titulo }}</s>
+                {% else %}
+                    <strong>{{ tarefa.titulo }}</strong>
+                {% endif %}
+                {% if tarefa.descricao %}
+                    <br><small style="color: #999;">{{ tarefa.descricao }}</small>
+                {% endif %}
+            </td>
+            <td>
+                {% if tarefa.prioridade == "alta" %}
+                    <span class="tag tag-alta">Alta</span>
+                {% elif tarefa.prioridade == "media" %}
+                    <span class="tag tag-media">Média</span>
+                {% else %}
+                    <span class="tag tag-baixa">Baixa</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if tarefa.concluida %}
+                    <span class="tag tag-concluida">Concluída</span>
+                {% else %}
+                    Pendente
+                {% endif %}
+            </td>
+            <td>
+                {% if not tarefa.concluida %}
+                <form method="POST" action="/concluir/{{ tarefa.id }}" style="display: inline;">
+                    <button type="submit" class="btn btn-verde" style="padding: 5px 12px; font-size: 13px;">
+                        Concluir
+                    </button>
+                </form>
+                {% endif %}
+                <form method="POST" action="/excluir/{{ tarefa.id }}" style="display: inline;">
+                    <button type="submit" class="btn btn-vermelho" style="padding: 5px 12px; font-size: 13px;">
+                        Excluir
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p style="text-align: center; padding: 40px; color: #999;">
+        <span style="font-size: 48px;">📭</span><br>
+        Nenhuma tarefa ainda. <a href="/nova">Crie a primeira!</a>
+    </p>
+    {% endif %}
+</div>
+
+<p><a href="/nova" class="btn btn-azul">+ Nova Tarefa</a></p>
+{% endblock %}

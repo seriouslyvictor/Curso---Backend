@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cadastro - Formulários{% endblock %}
+
+{% block conteudo %}
+<h1>📝 Cadastro de Aluno</h1>
+
+<div class="card">
+    <h2>Preencha seus dados</h2>
+
+    <!-- method="POST" envia os dados de forma segura -->
+    <!-- action="/cadastrar" diz PARA ONDE enviar -->
+    <form method="POST" action="/cadastrar">
+
+        <div class="form-group">
+            <label for="nome">Nome completo:</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+        </div>
+
+        <div class="form-group">
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" name="idade" min="10" max="100" placeholder="Sua idade" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="curso">Curso de interesse:</label>
+            <select id="curso" name="curso">
+                <option value="python">Python Backend</option>
+                <option value="web">Desenvolvimento Web</option>
+                <option value="dados">Ciência de Dados</option>
+                <option value="mobile">Desenvolvimento Mobile</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="mensagem">Por que quer aprender programação?</label>
+            <textarea id="mensagem" name="mensagem" rows="4"
+                      placeholder="Conte um pouco sobre sua motivação..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar Cadastro</button>
+    </form>
+</div>
+
+{% if cadastros %}
+<div class="card">
+    <h2>📋 Cadastros Recebidos ({{ cadastros|length }})</h2>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Email</th>
+            <th>Curso</th>
+        </tr>
+        {% for c in cadastros %}
+        <tr>
+            <td>{{ c.nome }}</td>
+            <td>{{ c.idade }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.curso }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
+
+{% endblock %}

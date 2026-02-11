@@ -1,0 +1,35 @@
+{% extends "projeto/base.html" %}
+
+{% block titulo %}Nova Tarefa - TaskPy{% endblock %}
+
+{% block conteudo %}
+<h1>+ Nova Tarefa</h1>
+
+<div class="card">
+    <form method="POST" action="/nova">
+        <div class="form-campo">
+            <label for="titulo">Título da tarefa:</label>
+            <input type="text" id="titulo" name="titulo"
+                   placeholder="Ex: Estudar Flask" required>
+        </div>
+
+        <div class="form-campo">
+            <label for="descricao">Descrição (opcional):</label>
+            <textarea id="descricao" name="descricao" rows="3"
+                      placeholder="Detalhes da tarefa..."></textarea>
+        </div>
+
+        <div class="form-campo">
+            <label for="prioridade">Prioridade:</label>
+            <select id="prioridade" name="prioridade">
+                <option value="baixa">Baixa</option>
+                <option value="media" selected>Média</option>
+                <option value="alta">Alta</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-azul">Criar Tarefa</button>
+        <a href="/" class="btn btn-cinza">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Meu Site Flask{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+    {% block estilos_extra %}{% endblock %}
+</head>
+<body>
+
+    <!-- NAVEGAÇÃO (aparece em TODAS as páginas) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">🐍 Flask App</a>
+            <div class="nav-links">
+                <a href="/">Início</a>
+                <a href="/sobre">Sobre</a>
+                <a href="/galeria">Galeria</a>
+                <a href="/contato">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTEÚDO (muda em cada página) -->
+    <main class="container">
+        {% block conteudo %}
+        <!-- Cada página coloca seu conteúdo aqui -->
+        {% endblock %}
+    </main>
+
+    <!-- RODAPÉ (aparece em TODAS as páginas) -->
+    <footer class="footer">
+        <p>Feito com 🐍 Python + Flask | Curso Backend {{ ano }}</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}TaskPy - Gerenciador de Tarefas{% endblock %}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-menu { display: flex; gap: 20px; }
+
+        .nav-menu a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover { color: white; }
+
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+            min-height: 60vh;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        h1 { color: #2c3e50; margin-bottom: 20px; }
+        h2 { color: #34495e; margin-bottom: 12px; }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-azul { background: #3498db; color: white; }
+        .btn-azul:hover { background: #2980b9; color: white; }
+        .btn-verde { background: #27ae60; color: white; }
+        .btn-verde:hover { background: #219a52; color: white; }
+        .btn-vermelho { background: #e74c3c; color: white; }
+        .btn-vermelho:hover { background: #c0392b; color: white; }
+        .btn-cinza { background: #95a5a6; color: white; }
+        .btn-cinza:hover { background: #7f8c8d; color: white; }
+
+        .form-campo {
+            margin-bottom: 15px;
+        }
+
+        .form-campo label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-campo input,
+        .form-campo textarea,
+        .form-campo select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .form-campo input:focus,
+        .form-campo textarea:focus,
+        .form-campo select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .mensagem-sucesso {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        table { width: 100%; border-collapse: collapse; }
+
+        th {
+            background: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover { background: #f5f8ff; }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .tag-alta { background: #fadbd8; color: #e74c3c; }
+        .tag-media { background: #fdebd0; color: #f39c12; }
+        .tag-baixa { background: #d5f5e3; color: #27ae60; }
+        .tag-concluida { background: #d5dbdb; color: #7f8c8d; text-decoration: line-through; }
+
+        footer {
+            background: #2c3e50;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .stat-numero {
+            font-size: 32px;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .stat-label { color: #7f8c8d; font-size: 14px; }
+
+        @media (max-width: 600px) {
+            .nav-inner { flex-direction: column; gap: 10px; }
+            .stats { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="logo">📋 TaskPy</a>
+            <div class="nav-menu">
+                <a href="/">Tarefas</a>
+                <a href="/nova">+ Nova</a>
+                <a href="/sobre">Sobre</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {% block conteudo %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>TaskPy - Gerenciador de Tarefas | Projeto do Módulo 4 | Curso Python Backend</p>
+    </footer>
+
+</body>
+</html>

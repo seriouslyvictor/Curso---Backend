@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block titulo %}Enquete - Votação{% endblock %}
+
+{% block conteudo %}
+<h1>🗳️ Enquete: Melhor Linguagem para Começar</h1>
+
+<div class="card">
+    <h2>Vote na sua linguagem favorita!</h2>
+    <form method="POST" action="/enquete">
+        <div class="form-group">
+            <label>
+                <input type="radio" name="linguagem" value="python" required> Python
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="radio" name="linguagem" value="javascript"> JavaScript
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="radio" name="linguagem" value="java"> Java
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="radio" name="linguagem" value="csharp"> C#
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Votar!</button>
+    </form>
+</div>
+
+{% if votos %}
+<div class="card">
+    <h2>📊 Resultados ({{ total_votos }} votos)</h2>
+    {% for linguagem, quantidade in votos.items() %}
+    <div style="margin: 10px 0;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+            <strong>{{ linguagem }}</strong>
+            <span>{{ quantidade }} votos</span>
+        </div>
+        <div style="background: #ecf0f1; border-radius: 10px; overflow: hidden;">
+            {% if total_votos > 0 %}
+            <div style="background: #3498db; height: 25px; width: {{ (quantidade / total_votos * 100)|int }}%;
+                        border-radius: 10px; transition: width 0.3s;"></div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

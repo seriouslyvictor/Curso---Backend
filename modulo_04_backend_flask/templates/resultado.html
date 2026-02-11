@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cadastro Confirmado!{% endblock %}
+
+{% block conteudo %}
+<h1>Cadastro Recebido!</h1>
+
+<div class="alerta alerta-sucesso">
+    <strong>Sucesso!</strong> Seu cadastro foi enviado com sucesso.
+</div>
+
+<div class="card">
+    <h2>📋 Seus Dados</h2>
+    <p><strong>Nome:</strong> {{ dados.nome }}</p>
+    <p><strong>Idade:</strong> {{ dados.idade }} anos</p>
+    <p><strong>Email:</strong> {{ dados.email }}</p>
+    <p><strong>Curso:</strong> {{ dados.curso }}</p>
+    {% if dados.mensagem %}
+    <p><strong>Motivação:</strong> {{ dados.mensagem }}</p>
+    {% endif %}
+</div>
+
+<div class="card">
+    <h2>🔧 O que aconteceu?</h2>
+    <ol>
+        <li>Você preencheu o formulário (dados no navegador)</li>
+        <li>Clicou em "Enviar" → navegador enviou um <strong>POST</strong> request</li>
+        <li>Flask recebeu os dados com <code>request.form</code></li>
+        <li>Python processou os dados e salvou na lista</li>
+        <li>Flask redirecionou para esta página de confirmação</li>
+    </ol>
+</div>
+
+<p>
+    <a href="/cadastro" class="btn btn-primary">← Fazer outro cadastro</a>
+    <a href="/" class="btn btn-success">🏠 Página inicial</a>
+</p>
+{% endblock %}

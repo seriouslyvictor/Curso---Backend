@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos - Turma de Python</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 { color: #2c3e50; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th {
+            background: #3498db;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover { background: #f0f7ff; }
+        .aprovado { color: #27ae60; font-weight: bold; }
+        .recuperacao { color: #f39c12; font-weight: bold; }
+        .reprovado { color: #e74c3c; font-weight: bold; }
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-box {
+            flex: 1;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stat-numero {
+            font-size: 28px;
+            font-weight: bold;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎓 Turma de Python Backend</h1>
+
+    <div class="stats">
+        <div class="stat-box">
+            <div class="stat-numero">{{ alunos|length }}</div>
+            <div>Total de alunos</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-numero">{{ media_turma }}</div>
+            <div>Média da turma</div>
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Nota</th>
+            <th>Situação</th>
+        </tr>
+        {% for aluno in alunos %}
+        <tr>
+            <td>{{ aluno.nome }}</td>
+            <td>{{ aluno.idade }}</td>
+            <td>{{ aluno.nota }}</td>
+            <td>
+                {% if aluno.nota >= 7 %}
+                    <span class="aprovado">Aprovado</span>
+                {% elif aluno.nota >= 5 %}
+                    <span class="recuperacao">Recuperação</span>
+                {% else %}
+                    <span class="reprovado">Reprovado</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p style="text-align: center; margin-top: 20px;">
+        <a href="/">← Voltar</a>
+    </p>
+</body>
+</html>

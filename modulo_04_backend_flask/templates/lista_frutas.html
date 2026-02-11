@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Frutas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 { color: #2c3e50; }
+        .fruta {
+            background: white;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .fruta-nome { font-size: 18px; font-weight: bold; }
+        .fruta-preco { color: #27ae60; font-size: 20px; }
+        .total {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .vazia {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍎 Lista de Frutas</h1>
+
+    <!-- {% if %} funciona como if/else do Python -->
+    {% if frutas %}
+        <p>Temos <strong>{{ frutas|length }}</strong> frutas disponíveis:</p>
+
+        <!-- {% for %} funciona como for do Python -->
+        {% for fruta in frutas %}
+        <div class="fruta">
+            <span class="fruta-nome">{{ fruta.emoji }} {{ fruta.nome }}</span>
+            <span class="fruta-preco">R$ {{ "%.2f"|format(fruta.preco) }}</span>
+        </div>
+        {% endfor %}
+
+        <div class="total">
+            Total de frutas: {{ frutas|length }}
+        </div>
+    {% else %}
+        <div class="vazia">
+            <p style="font-size: 48px;">🤷</p>
+            <p>Nenhuma fruta disponível no momento.</p>
+        </div>
+    {% endif %}
+
+    <p style="text-align: center; margin-top: 20px;">
+        <a href="/">← Voltar</a>
+    </p>
+</body>
+</html>

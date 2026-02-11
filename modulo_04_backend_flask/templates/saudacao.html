@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saudação - {{ nome }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: {{ cor_fundo }};
+            transition: background-color 0.3s;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 { color: #2c3e50; }
+        .periodo { color: #7f8c8d; font-size: 18px; }
+        .emoji { font-size: 48px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <p class="emoji">{{ emoji }}</p>
+        <h1>Olá, {{ nome }}!</h1>
+        <p class="periodo">{{ mensagem_periodo }}</p>
+        <p>São {{ hora }}h agora.</p>
+        <p>Bem-vindo ao nosso site Flask!</p>
+    </div>
+    <p style="text-align: center; margin-top: 20px;">
+        <a href="/">← Voltar</a>
+    </p>
+</body>
+</html>

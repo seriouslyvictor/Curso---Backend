@@ -1,0 +1,34 @@
+{# Esta página HERDA de base.html #}
+{# Só precisamos definir o que MUDA: título e conteúdo #}
+
+{% extends "base.html" %}
+
+{% block titulo %}Início - Meu Site Flask{% endblock %}
+
+{% block conteudo %}
+<h1>Bem-vindo ao Meu Site!</h1>
+
+<div class="card">
+    <h2>📚 O que é Herança de Templates?</h2>
+    <p>
+        Esta página usa <strong>herança de templates</strong>.
+        O menu de navegação e o rodapé vêm do arquivo <code>base.html</code>.
+        Só o conteúdo do meio muda em cada página!
+    </p>
+    <p>
+        É como uma moldura: a moldura é sempre a mesma,
+        mas a foto dentro muda.
+    </p>
+</div>
+
+<div class="card">
+    <h2>🗺️ Navegação</h2>
+    <p>Use o menu acima para navegar entre as páginas. Note como o menu e o rodapé são sempre os mesmos!</p>
+    <ul>
+        <li><strong>Início</strong> - Você está aqui!</li>
+        <li><strong>Sobre</strong> - Informações sobre o projeto</li>
+        <li><strong>Galeria</strong> - Fotos dos projetos</li>
+        <li><strong>Contato</strong> - Fale conosco</li>
+    </ul>
+</div>
+{% endblock %}
