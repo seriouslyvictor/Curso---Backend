@@ -1,0 +1,36 @@
+{% extends "categorias_base.html" %}
+
+{% block titulo %}Novo Post - Blog{% endblock %}
+
+{% block conteudo %}
+<h1>+ Novo Post</h1>
+
+<div class="card">
+    <form method="POST" action="/novo">
+        <div class="form-campo">
+            <label for="titulo">Título do post:</label>
+            <input type="text" id="titulo" name="titulo"
+                   placeholder="Ex: O que aprendi hoje" required>
+        </div>
+
+        <div class="form-campo">
+            <label for="categoria_id">Categoria:</label>
+            <select id="categoria_id" name="categoria_id">
+                <option value="">Sem categoria</option>
+                {% for cat in categorias %}
+                <option value="{{ cat.id }}">{{ cat.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-campo">
+            <label for="conteudo">Conteúdo:</label>
+            <textarea id="conteudo" name="conteudo" rows="8"
+                      placeholder="Escreva seu post aqui..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-verde">Publicar Post</button>
+        <a href="/" class="btn btn-cinza">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

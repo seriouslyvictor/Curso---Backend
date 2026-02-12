@@ -1,0 +1,50 @@
+{% extends "posts_base.html" %}
+
+{% block titulo %}Meu Blog - Todos os Posts{% endblock %}
+
+{% block conteudo %}
+<h1>📝 Todos os Posts</h1>
+
+<span class="stat-box">{{ total }} post{{ "s" if total != 1 }}</span>
+
+{% if mensagem %}
+<div class="mensagem-sucesso">{{ mensagem }}</div>
+{% endif %}
+
+{% if posts %}
+    {% for post in posts %}
+    <div class="post-card">
+        <h2><a href="/post/{{ post.id }}">{{ post.titulo }}</a></h2>
+        <div class="post-meta">
+            📅 {{ post.criado_em.strftime("%d/%m/%Y às %H:%M") }}
+        </div>
+        <div class="post-resumo">
+            {{ post.conteudo[:150] }}{% if post.conteudo|length > 150 %}...{% endif %}
+        </div>
+        <div class="post-acoes">
+            <a href="/post/{{ post.id }}" class="btn btn-azul" style="padding: 5px 15px; font-size: 13px;">
+                Ler mais
+            </a>
+            <a href="/editar/{{ post.id }}" class="btn btn-laranja" style="padding: 5px 15px; font-size: 13px;">
+                Editar
+            </a>
+            <form method="POST" action="/excluir/{{ post.id }}" style="display: inline;"
+                  onsubmit="return confirm('Tem certeza que deseja excluir este post?')">
+                <button type="submit" class="btn btn-vermelho" style="padding: 5px 15px; font-size: 13px;">
+                    Excluir
+                </button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+<div class="card" style="text-align: center; padding: 40px;">
+    <p style="font-size: 48px;">📭</p>
+    <p style="color: #999;">Nenhum post ainda. <a href="/novo">Crie o primeiro!</a></p>
+</div>
+{% endif %}
+
+<p style="margin-top: 20px;">
+    <a href="/novo" class="btn btn-verde">+ Novo Post</a>
+</p>
+{% endblock %}

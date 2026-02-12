@@ -1,0 +1,84 @@
+{% extends "blog/base.html" %}
+
+{% block titulo %}
+{% if categoria_atual is defined and categoria_atual %}
+    {{ categoria_atual.nome }} — BlogPy
+{% else %}
+    BlogPy — Meu Blog com Banco de Dados
+{% endif %}
+{% endblock %}
+
+{% block conteudo %}
+{% if categoria_atual is defined and categoria_atual %}
+    <h1>📂 {{ categoria_atual.nome }}</h1>
+    <p style="margin-bottom: 15px;">
+        <a href="/">&larr; Todos os posts</a>
+        &nbsp;|&nbsp;
+        {{ paginacao.total }} post{{ "s" if paginacao.total != 1 }} nesta categoria
+    </p>
+{% else %}
+    <h1>📝 Últimos Posts</h1>
+{% endif %}
+
+{% if mensagem is defined and mensagem %}
+<div class="mensagem-sucesso">{{ mensagem }}</div>
+{% endif %}
+
+{% if posts %}
+    {% for post in posts %}
+    <div class="post-card">
+        <h2><a href="/post/{{ post.id }}">{{ post.titulo }}</a></h2>
+        <div class="post-meta">
+            📅 {{ post.criado_em.strftime("%d/%m/%Y às %H:%M") }}
+            {% if post.categoria %}
+                &nbsp;|&nbsp;
+                <a href="/categoria/{{ post.categoria.id }}" class="tag-categoria">
+                    {{ post.categoria.nome }}
+                </a>
+            {% endif %}
+        </div>
+        <div class="post-resumo">
+            {{ post.conteudo[:200] }}{% if post.conteudo|length > 200 %}...{% endif %}
+        </div>
+        <div class="post-acoes">
+            <a href="/post/{{ post.id }}" class="btn btn-azul btn-sm">Ler mais</a>
+            <a href="/editar/{{ post.id }}" class="btn btn-laranja btn-sm">Editar</a>
+            <form method="POST" action="/excluir/{{ post.id }}" style="display: inline;"
+                  onsubmit="return confirm('Tem certeza que deseja excluir este post?')">
+                <button type="submit" class="btn btn-vermelho btn-sm">Excluir</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Paginação -->
+    {% if paginacao.pages > 1 %}
+    <div class="paginacao">
+        {% if paginacao.has_prev %}
+        <a href="?page={{ paginacao.prev_num }}">&larr; Anterior</a>
+        {% endif %}
+
+        {% for num in range(1, paginacao.pages + 1) %}
+            {% if num == paginacao.page %}
+                <span class="atual">{{ num }}</span>
+            {% else %}
+                <a href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if paginacao.has_next %}
+        <a href="?page={{ paginacao.next_num }}">Próxima &rarr;</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+{% else %}
+<div class="card" style="text-align: center; padding: 50px;">
+    <p style="font-size: 48px;">📭</p>
+    <p style="color: #999; margin-top: 10px;">Nenhum post encontrado.</p>
+    <p style="margin-top: 15px;">
+        <a href="/novo" class="btn btn-primario">Escrever primeiro post</a>
+    </p>
+</div>
+{% endif %}
+{% endblock %}

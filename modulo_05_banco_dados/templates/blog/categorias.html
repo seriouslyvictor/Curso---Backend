@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+
+{% block titulo %}Categorias — BlogPy{% endblock %}
+
+{% block conteudo %}
+<h1>📂 Categorias</h1>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;">
+    {% for cat in categorias %}
+    <a href="/categoria/{{ cat.id }}" style="text-decoration: none;">
+        <div class="card" style="text-align: center; transition: all 0.2s; cursor: pointer;">
+            <div style="font-size: 36px; margin-bottom: 10px;">📁</div>
+            <h2 style="font-size: 18px; color: #1a1a2e;">{{ cat.nome }}</h2>
+            <p style="color: #888; font-size: 14px; margin-top: 5px;">
+                {{ cat.posts|length }} post{{ "s" if cat.posts|length != 1 }}
+            </p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+{% if not categorias %}
+<div class="card" style="text-align: center; padding: 40px;">
+    <p style="color: #999;">Nenhuma categoria criada ainda.</p>
+</div>
+{% endif %}
+{% endblock %}

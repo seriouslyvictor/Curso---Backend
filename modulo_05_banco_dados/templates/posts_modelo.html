@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Modelos SQLAlchemy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        nav {
+            background: linear-gradient(135deg, #2c3e50, #e67e22);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .nav-menu a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        .nav-menu a:hover { color: white; }
+        main {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+            min-height: 60vh;
+        }
+        h1 { color: #2c3e50; margin-bottom: 20px; }
+        .post-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .post-card h2 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        .post-card h2 a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        .post-card h2 a:hover { color: #e67e22; }
+        .post-meta {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .post-conteudo {
+            color: #555;
+            line-height: 1.8;
+        }
+        footer {
+            background: #2c3e50;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="logo">📝 Meu Blog</a>
+            <div class="nav-menu">
+                <a href="/">Todos os Posts</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {% if destaque %}
+            <p><a href="/">&larr; Voltar para todos os posts</a></p>
+        {% endif %}
+
+        <h1>{% if destaque %}Detalhes do Post{% else %}📝 Todos os Posts{% endif %}</h1>
+
+        {% for post in posts %}
+        <div class="post-card">
+            <h2>
+                {% if destaque %}
+                    {{ post.titulo }}
+                {% else %}
+                    <a href="/post/{{ post.id }}">{{ post.titulo }}</a>
+                {% endif %}
+            </h2>
+            <div class="post-meta">
+                📅 {{ post.criado_em.strftime("%d/%m/%Y às %H:%M") }}
+                | 🆔 Post #{{ post.id }}
+            </div>
+            <div class="post-conteudo">
+                {{ post.conteudo }}
+            </div>
+        </div>
+        {% endfor %}
+
+        {% if not posts %}
+        <div class="post-card" style="text-align: center; padding: 40px;">
+            <p style="font-size: 48px;">📭</p>
+            <p style="color: #999;">Nenhum post ainda.</p>
+        </div>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>Lição 5.2 - Modelos como Classes Python | Curso Python Backend</p>
+    </footer>
+</body>
+</html>

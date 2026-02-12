@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos - Banco de Dados</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        nav {
+            background: linear-gradient(135deg, #2c3e50, #8e44ad);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        h1 { color: #2c3e50; margin-bottom: 20px; }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .stat-box {
+            display: inline-block;
+            background: #8e44ad;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th {
+            background: #8e44ad;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover { background: #f5f0ff; }
+        .tag-curso {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            background: #e8daef;
+            color: #6c3483;
+        }
+        .filtro-info {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .filtro-info a { color: #155724; }
+        footer {
+            background: #2c3e50;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="logo">🎓 Alunos - Banco de Dados</a>
+        </div>
+    </nav>
+
+    <main>
+        <h1>🎓 Lista de Alunos</h1>
+
+        {% if filtro %}
+        <div class="filtro-info">
+            Filtrando por curso: <strong>{{ filtro }}</strong>
+            — <a href="/">Ver todos</a>
+        </div>
+        {% endif %}
+
+        <div class="stat-box">{{ total }} aluno{{ "s" if total != 1 }}</div>
+
+        <div class="card">
+            {% if alunos %}
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Curso</th>
+                    <th>Cadastrado em</th>
+                </tr>
+                {% for aluno in alunos %}
+                <tr>
+                    <td>{{ aluno.id }}</td>
+                    <td><strong>{{ aluno.nome }}</strong></td>
+                    <td>{{ aluno.idade }} anos</td>
+                    <td><span class="tag-curso">{{ aluno.curso }}</span></td>
+                    <td>{{ aluno.criado_em.strftime("%d/%m/%Y %H:%M") }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+            <p style="text-align: center; padding: 40px; color: #999;">
+                Nenhum aluno encontrado.
+            </p>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        <p>Lição 5.1 - Introdução a Bancos de Dados | Curso Python Backend</p>
+    </footer>
+</body>
+</html>

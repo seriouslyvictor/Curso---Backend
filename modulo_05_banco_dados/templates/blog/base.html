@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}BlogPy{% endblock %}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* NAVEGAÇÃO */
+        nav {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+        }
+
+        .nav-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #e94560;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span { color: white; }
+
+        .nav-menu { display: flex; gap: 20px; align-items: center; }
+
+        .nav-menu a {
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+
+        .nav-menu a:hover { color: #e94560; }
+
+        /* LAYOUT PRINCIPAL */
+        .container {
+            max-width: 960px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 25px;
+            min-height: 65vh;
+        }
+
+        .conteudo-principal { flex: 1; }
+
+        .barra-lateral {
+            width: 240px;
+            flex-shrink: 0;
+        }
+
+        /* CARDS */
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .sidebar-card {
+            background: white;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .sidebar-card h3 {
+            color: #1a1a2e;
+            margin-bottom: 12px;
+            font-size: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e94560;
+        }
+
+        /* TÍTULOS */
+        h1 {
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        h2 { color: #16213e; margin-bottom: 12px; }
+
+        /* POST CARDS */
+        .post-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-left: 4px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left-color: #e94560;
+        }
+
+        .post-card h2 { margin-bottom: 8px; }
+
+        .post-card h2 a {
+            color: #1a1a2e;
+            text-decoration: none;
+        }
+
+        .post-card h2 a:hover { color: #e94560; }
+
+        .post-meta {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .post-resumo {
+            color: #555;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .post-acoes {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        /* BOTÕES */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-primario { background: #e94560; color: white; }
+        .btn-primario:hover { background: #c73652; color: white; }
+        .btn-azul { background: #0f3460; color: white; }
+        .btn-azul:hover { background: #0a264a; color: white; }
+        .btn-verde { background: #27ae60; color: white; }
+        .btn-verde:hover { background: #219a52; color: white; }
+        .btn-vermelho { background: #e74c3c; color: white; }
+        .btn-vermelho:hover { background: #c0392b; color: white; }
+        .btn-cinza { background: #95a5a6; color: white; }
+        .btn-cinza:hover { background: #7f8c8d; color: white; }
+        .btn-laranja { background: #e67e22; color: white; }
+        .btn-laranja:hover { background: #d35400; color: white; }
+
+        .btn-sm {
+            padding: 5px 14px;
+            font-size: 13px;
+        }
+
+        /* TAGS */
+        .tag-categoria {
+            display: inline-block;
+            background: #eef2ff;
+            color: #0f3460;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .tag-categoria:hover {
+            background: #0f3460;
+            color: white;
+        }
+
+        /* FORMULÁRIOS */
+        .form-campo {
+            margin-bottom: 18px;
+        }
+
+        .form-campo label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #1a1a2e;
+            font-size: 14px;
+        }
+
+        .form-campo input,
+        .form-campo textarea,
+        .form-campo select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .form-campo input:focus,
+        .form-campo textarea:focus,
+        .form-campo select:focus {
+            outline: none;
+            border-color: #e94560;
+        }
+
+        /* MENSAGENS */
+        .mensagem-sucesso {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #27ae60;
+        }
+
+        .mensagem-erro {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        /* BUSCA */
+        .busca-form {
+            display: flex;
+            gap: 6px;
+        }
+
+        .busca-form input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .busca-form input:focus {
+            outline: none;
+            border-color: #e94560;
+        }
+
+        .busca-form button {
+            padding: 8px 14px;
+            background: #e94560;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .busca-form button:hover { background: #c73652; }
+
+        /* CATEGORIAS NA SIDEBAR */
+        .cat-lista {
+            list-style: none;
+        }
+
+        .cat-lista li {
+            margin-bottom: 6px;
+        }
+
+        .cat-lista a {
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+        }
+
+        .cat-lista a:hover { color: #e94560; }
+
+        .cat-lista .ativo {
+            font-weight: bold;
+            color: #e94560;
+        }
+
+        .cat-contagem {
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        /* PAGINAÇÃO */
+        .paginacao {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin: 30px 0;
+        }
+
+        .paginacao a, .paginacao span {
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .paginacao a {
+            background: white;
+            color: #0f3460;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+
+        .paginacao a:hover {
+            background: #e94560;
+            color: white;
+        }
+
+        .paginacao .atual {
+            background: #e94560;
+            color: white;
+        }
+
+        /* ESTATÍSTICAS */
+        .stats {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            flex: 1;
+            background: white;
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .stat-numero {
+            font-size: 28px;
+            font-weight: bold;
+            color: #e94560;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1a1a2e;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #e94560;
+            text-decoration: none;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 700px) {
+            .container { flex-direction: column; }
+            .barra-lateral { width: 100%; }
+            .nav-inner { flex-direction: column; gap: 10px; }
+            .stats { flex-direction: column; }
+            .post-acoes { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="logo">Blog<span>Py</span></a>
+            <div class="nav-menu">
+                <a href="/">Início</a>
+                <a href="/novo">+ Novo Post</a>
+                <a href="/categorias">Categorias</a>
+                <a href="/sobre">Sobre</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="conteudo-principal">
+            {% block conteudo %}{% endblock %}
+        </div>
+
+        <div class="barra-lateral">
+            {% block sidebar %}
+            <!-- Busca -->
+            <div class="sidebar-card">
+                <h3>🔍 Buscar</h3>
+                <form action="/busca" method="GET" class="busca-form">
+                    <input type="text" name="q" placeholder="Buscar posts..."
+                           value="{{ termo_busca or '' }}">
+                    <button type="submit">Ir</button>
+                </form>
+            </div>
+
+            <!-- Categorias -->
+            <div class="sidebar-card">
+                <h3>📂 Categorias</h3>
+                <ul class="cat-lista">
+                    {% if categorias is defined %}
+                        {% for cat in categorias %}
+                        <li>
+                            <a href="/categoria/{{ cat.id }}"
+                               {% if categoria_atual is defined and categoria_atual and categoria_atual.id == cat.id %}class="ativo"{% endif %}>
+                                {{ cat.nome }}
+                                <span class="cat-contagem">{{ cat.posts|length }}</span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+
+    <footer>
+        <p>BlogPy — Projeto do Módulo 5 | <a href="/sobre">Curso Python Backend</a></p>
+    </footer>
+
+</body>
+</html>

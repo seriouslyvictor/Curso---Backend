@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+
+{% block titulo %}{{ post.titulo }} — BlogPy{% endblock %}
+
+{% block conteudo %}
+<p><a href="/">&larr; Voltar para o início</a></p>
+
+<div class="card">
+    <h1 style="font-size: 26px;">{{ post.titulo }}</h1>
+    <div class="post-meta" style="margin-bottom: 15px;">
+        📅 Publicado em {{ post.criado_em.strftime("%d/%m/%Y às %H:%M") }}
+        {% if post.categoria %}
+            &nbsp;|&nbsp;
+            <a href="/categoria/{{ post.categoria.id }}" class="tag-categoria">
+                {{ post.categoria.nome }}
+            </a>
+        {% endif %}
+    </div>
+    <hr style="margin: 15px 0; border: none; border-top: 1px solid #eee;">
+    <div style="line-height: 1.9; color: #444; font-size: 16px; white-space: pre-line;">{{ post.conteudo }}</div>
+
+    <div class="post-acoes" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee;">
+        <a href="/editar/{{ post.id }}" class="btn btn-laranja">Editar</a>
+        <form method="POST" action="/excluir/{{ post.id }}" style="display: inline;"
+              onsubmit="return confirm('Tem certeza que deseja excluir este post?')">
+            <button type="submit" class="btn btn-vermelho">Excluir</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "categorias_base.html" %}
+
+{% block titulo %}
+{% if categoria_atual %}
+    {{ categoria_atual.nome }} - Blog
+{% else %}
+    Blog com Categorias
+{% endif %}
+{% endblock %}
+
+{% block conteudo %}
+<div class="layout">
+    <div class="conteudo-principal">
+        {% if categoria_atual %}
+            <h1>📂 {{ categoria_atual.nome }}</h1>
+            <p><a href="/">&larr; Todas as categorias</a></p>
+        {% else %}
+            <h1>📝 Todos os Posts</h1>
+        {% endif %}
+
+        <span class="stat-box">{{ total }} post{{ "s" if total != 1 }}</span>
+
+        {% if mensagem %}
+        <div class="mensagem-sucesso">{{ mensagem }}</div>
+        {% endif %}
+
+        {% if posts %}
+            {% for post in posts %}
+            <div class="post-card">
+                <h2><a href="/post/{{ post.id }}">{{ post.titulo }}</a></h2>
+                <div class="post-meta">
+                    📅 {{ post.criado_em.strftime("%d/%m/%Y às %H:%M") }}
+                    {% if post.categoria %}
+                        | <a href="/categoria/{{ post.categoria.id }}">
+                            <span class="tag-categoria">{{ post.categoria.nome }}</span>
+                          </a>
+                    {% endif %}
+                </div>
+                <div class="post-resumo">
+                    {{ post.conteudo[:150] }}{% if post.conteudo|length > 150 %}...{% endif %}
+                </div>
+                <div class="post-acoes">
+                    <a href="/post/{{ post.id }}" class="btn btn-azul" style="padding: 5px 15px; font-size: 13px;">
+                        Ler mais
+                    </a>
+                    <a href="/editar/{{ post.id }}" class="btn btn-laranja" style="padding: 5px 15px; font-size: 13px;">
+                        Editar
+                    </a>
+                    <form method="POST" action="/excluir/{{ post.id }}" style="display: inline;"
+                          onsubmit="return confirm('Excluir este post?')">
+                        <button type="submit" class="btn btn-vermelho" style="padding: 5px 15px; font-size: 13px;">
+                            Excluir
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <div class="card" style="text-align: center; padding: 40px;">
+            <p style="font-size: 48px;">📭</p>
+            <p style="color: #999;">Nenhum post encontrado. <a href="/novo">Crie o primeiro!</a></p>
+        </div>
+        {% endif %}
+
+        <p style="margin-top: 10px;">
+            <a href="/novo" class="btn btn-verde">+ Novo Post</a>
+        </p>
+    </div>
+
+    <div class="barra-lateral">
+        <div class="sidebar-card">
+            <h3>📂 Categorias</h3>
+            <ul class="cat-lista">
+                <li>
+                    <a href="/" {% if not categoria_atual %}class="ativo"{% endif %}>
+                        Todas
+                    </a>
+                </li>
+                {% for cat in categorias %}
+                <li>
+                    <a href="/categoria/{{ cat.id }}"
+                       {% if categoria_atual and categoria_atual.id == cat.id %}class="ativo"{% endif %}>
+                        {{ cat.nome }}
+                        <span class="cat-contagem">({{ cat.posts|length }})</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,141 @@
+{% extends "categorias_base.html" %}
+
+{% block titulo %}
+{% if termo_busca %}
+    Busca: {{ termo_busca }} - Blog
+{% elif categoria_atual %}
+    {{ categoria_atual.nome }} - Blog
+{% else %}
+    Blog com Busca e Paginação
+{% endif %}
+{% endblock %}
+
+{% block conteudo %}
+<div class="layout">
+    <div class="conteudo-principal">
+        {% if termo_busca %}
+            <h1>🔍 Resultados para "{{ termo_busca }}"</h1>
+            <p><a href="/">&larr; Ver todos os posts</a></p>
+        {% elif categoria_atual %}
+            <h1>📂 {{ categoria_atual.nome }}</h1>
+            <p><a href="/">&larr; Todas as categorias</a></p>
+        {% else %}
+            <h1>📝 Todos os Posts</h1>
+        {% endif %}
+
+        <span class="stat-box">{{ total }} post{{ "s" if total != 1 }}</span>
+
+        {% if mensagem %}
+        <div class="mensagem-sucesso">{{ mensagem }}</div>
+        {% endif %}
+
+        {% if posts %}
+            {% for post in posts %}
+            <div class="post-card">
+                <h2><a href="/post/{{ post.id }}">{{ post.titulo }}</a></h2>
+                <div class="post-meta">
+                    📅 {{ post.criado_em.strftime("%d/%m/%Y às %H:%M") }}
+                    {% if post.categoria %}
+                        | <a href="/categoria/{{ post.categoria.id }}">
+                            <span class="tag-categoria">{{ post.categoria.nome }}</span>
+                          </a>
+                    {% endif %}
+                </div>
+                <div class="post-resumo">
+                    {{ post.conteudo[:150] }}{% if post.conteudo|length > 150 %}...{% endif %}
+                </div>
+                <div class="post-acoes">
+                    <a href="/post/{{ post.id }}" class="btn btn-azul" style="padding: 5px 15px; font-size: 13px;">
+                        Ler mais
+                    </a>
+                    <a href="/editar/{{ post.id }}" class="btn btn-laranja" style="padding: 5px 15px; font-size: 13px;">
+                        Editar
+                    </a>
+                    <form method="POST" action="/excluir/{{ post.id }}" style="display: inline;"
+                          onsubmit="return confirm('Excluir este post?')">
+                        <button type="submit" class="btn btn-vermelho" style="padding: 5px 15px; font-size: 13px;">
+                            Excluir
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- PAGINAÇÃO -->
+            {% if paginacao.pages > 1 %}
+            <div class="paginacao">
+                {% if paginacao.has_prev %}
+                <a href="?page={{ paginacao.prev_num }}{% if termo_busca %}&q={{ termo_busca }}{% endif %}">
+                    &larr; Anterior
+                </a>
+                {% endif %}
+
+                {% for num in range(1, paginacao.pages + 1) %}
+                    {% if num == paginacao.page %}
+                        <span class="atual">{{ num }}</span>
+                    {% else %}
+                        <a href="?page={{ num }}{% if termo_busca %}&q={{ termo_busca }}{% endif %}">
+                            {{ num }}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if paginacao.has_next %}
+                <a href="?page={{ paginacao.next_num }}{% if termo_busca %}&q={{ termo_busca }}{% endif %}">
+                    Próxima &rarr;
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+
+        {% else %}
+        <div class="card" style="text-align: center; padding: 40px;">
+            <p style="font-size: 48px;">📭</p>
+            {% if termo_busca %}
+                <p style="color: #999;">Nenhum post encontrado para "{{ termo_busca }}".</p>
+                <p><a href="/">Ver todos os posts</a></p>
+            {% else %}
+                <p style="color: #999;">Nenhum post ainda. <a href="/novo">Crie o primeiro!</a></p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <p style="margin-top: 10px;">
+            <a href="/novo" class="btn btn-verde">+ Novo Post</a>
+        </p>
+    </div>
+
+    <div class="barra-lateral">
+        <!-- BUSCA -->
+        <div class="sidebar-card">
+            <h3>🔍 Buscar</h3>
+            <form action="/busca" method="GET" class="busca-form">
+                <input type="text" name="q" placeholder="Buscar posts..."
+                       value="{{ termo_busca or '' }}">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+
+        <!-- CATEGORIAS -->
+        <div class="sidebar-card">
+            <h3>📂 Categorias</h3>
+            <ul class="cat-lista">
+                <li>
+                    <a href="/" {% if not categoria_atual and not termo_busca %}class="ativo"{% endif %}>
+                        Todas
+                    </a>
+                </li>
+                {% for cat in categorias %}
+                <li>
+                    <a href="/categoria/{{ cat.id }}"
+                       {% if categoria_atual and categoria_atual.id == cat.id %}class="ativo"{% endif %}>
+                        {{ cat.nome }}
+                        <span class="cat-contagem">({{ cat.posts|length }})</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

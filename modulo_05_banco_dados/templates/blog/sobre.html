@@ -1,0 +1,88 @@
+{% extends "blog/base.html" %}
+
+{% block titulo %}Sobre — BlogPy{% endblock %}
+
+{% block conteudo %}
+<h1>Sobre o BlogPy</h1>
+
+<div class="card">
+    <h2>📝 O que é?</h2>
+    <p>
+        BlogPy é um blog completo criado como projeto do
+        <strong>Módulo 5 — Bancos de Dados e Persistência</strong>
+        do curso Python Backend Developer.
+    </p>
+</div>
+
+<div class="stats">
+    <div class="stat-box">
+        <div class="stat-numero">{{ total_posts }}</div>
+        <div class="stat-label">Posts publicados</div>
+    </div>
+    <div class="stat-box">
+        <div class="stat-numero">{{ total_categorias }}</div>
+        <div class="stat-label">Categorias</div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>🛠️ Tecnologias Usadas</h2>
+    <ul style="padding-left: 20px; line-height: 2;">
+        <li><strong>Python + Flask</strong> — Servidor web (backend)</li>
+        <li><strong>Flask-SQLAlchemy</strong> — Conexão com banco de dados</li>
+        <li><strong>SQLite</strong> — Banco de dados (arquivo .db)</li>
+        <li><strong>Jinja2</strong> — Templates HTML dinâmicos</li>
+        <li><strong>HTML + CSS</strong> — Interface visual</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>📚 Conceitos do Módulo 5</h2>
+    <table style="width: 100%; border-collapse: collapse;">
+        <tr style="background: #1a1a2e; color: white;">
+            <th style="padding: 10px; text-align: left;">Lição</th>
+            <th style="padding: 10px; text-align: left;">Conceito</th>
+            <th style="padding: 10px; text-align: left;">Usado aqui</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 10px;">5.1</td>
+            <td style="padding: 10px;">Introdução a bancos de dados</td>
+            <td style="padding: 10px;">SQLite + SQLAlchemy configurados</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 10px;">5.2</td>
+            <td style="padding: 10px;">Modelos como classes</td>
+            <td style="padding: 10px;">Post e Categoria como db.Model</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 10px;">5.3</td>
+            <td style="padding: 10px;">CRUD: Criar e Ler</td>
+            <td style="padding: 10px;">Criar posts e listar todos</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 10px;">5.4</td>
+            <td style="padding: 10px;">CRUD: Editar e Excluir</td>
+            <td style="padding: 10px;">Editar e excluir posts</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 10px;">5.5</td>
+            <td style="padding: 10px;">Relacionamentos</td>
+            <td style="padding: 10px;">Posts pertencem a categorias</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px;">5.6</td>
+            <td style="padding: 10px;">Busca e paginação</td>
+            <td style="padding: 10px;">Buscar posts e navegar páginas</td>
+        </tr>
+    </table>
+</div>
+
+<div class="card">
+    <h2>🚀 Próximos Passos</h2>
+    <p>
+        No <strong>Módulo 6</strong>, vamos adicionar <strong>usuários e autenticação</strong>:
+        login, registro, e cada post terá um autor! No <strong>Módulo 7</strong>, vamos
+        fazer o <strong>deploy</strong> e colocar o blog no ar para o mundo todo acessar.
+    </p>
+</div>
+{% endblock %}
